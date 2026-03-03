@@ -10,11 +10,11 @@
 * [Tópico 1]
 * [Tópico 2]
 
-### [cite_start]Decisões [cite: 211]
+### Decisões
 * [Decisão 1]
 * [Decisão 2]
 
-### [cite_start]Tarefas [cite: 212]
+### Tarefas
 | Tarefa | Responsável |
 | :--- | :--- |
 | [Tarefa A] | [Nome] |
