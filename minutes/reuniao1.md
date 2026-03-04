@@ -17,14 +17,25 @@
 
 ### Decisões
 
-1. **Escolha do tema e definição do MVP**
-   O tema do projeto foi definido como **Smart Home Dashboard**, que processa dados de temperatura, movimento, luz e consumo energético. O Produto Mínimo Viável (MVP) focar-se-á nas funcionalidades principais, como visualização em tempo real, alertas, gráficos históricos e controlo remoto dos dispositivos.
+1. **Escolha do tema**
+   O projeto será desenvolvido como **Smart Home Dashboard**, focado em monitorização e automação doméstica de temperatura, movimento, luz e consumo energético.
 
-2. **Fluxo de trabalho do repositório**
-   Adotou-se o **fluxo de trabalho com feature branches**, sendo proibidos pushes diretos na branch principal (`main`). Todas as alterações deverão ser feitas através de branches de funcionalidade e integradas mediante pull requests.
+2. **Atribuição de papéis**
+   A equipa definiu e atribuiu os papéis principais: Team Manager, Product Owner, Architect, DevOps Master e Developers.
 
-3. **Gestão do backlog e Scrum Board**
-   O **GitHub Projects** foi escolhido como ferramenta oficial para a gestão do backlog e organização das sprints, permitindo priorizar, atribuir e rastrear as histórias de utilizador.
+3. **Fluxo de trabalho do repositório**
+   Será adotado **feature-branching**, sem pushes diretos na branch principal (`main`). Todas as alterações passam primeiro pelo branch `develop` e depois são integradas na `main`.
+
+4. **Gestão do backlog e Scrum Board**
+   O **GitHub Projects** será usado para planear sprints, priorizar tarefas e rastrear histórias de utilizador.
+
+5. **Implementação da arquitetura**
+   O projeto seguirá uma arquitetura em camadas distribuídas:
+
+   * **Simulator**: Geração de dados de sensores virtuais e envio para o backend via API REST POST.
+   * **Backend/API REST**: Processamento dos dados, geração de alertas e eventos, persistência na base de dados e exposição de endpoints REST para o frontend.
+   * **Base de Dados**: Armazenamento persistente de sensores, eventos e alertas.
+   * **Frontend**: Dashboard web para visualização de dados em tempo real, gráficos históricos, alertas e controlo remoto.
 
 ### Tarefas
 | Tarefa | Responsável | Estado |
