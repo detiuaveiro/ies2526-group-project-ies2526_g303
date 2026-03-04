@@ -137,18 +137,6 @@ O sistema segue uma arquitetura em camadas distribuídas:
    * Gráficos históricos;
    * Interface de controlo remoto e automação.
 
-### Representação simplificada
-
-```
-Frontend Web
-      ↓
-Backend (API REST + Lógica de Negócio) -> Base de dados
-      ↑
-Simulador de Sensores
-```
-
-O diagrama detalhado encontra-se ilustrado no README principal do repositório.
-
 ---
 
 ## B.3. Interações entre Módulos (Visão Dinâmica)
@@ -177,11 +165,46 @@ O diagrama detalhado encontra-se ilustrado no README principal do repositório.
 3. Sistema cria registo de alerta.
 4. Dashboard apresenta notificação visual imediata.
 
+### Diagrama da Arquitetura
+
+```
++------------------------+
+|  Simulator             |
+|  (Sensores Virtuais)   |
+|  - Temperatura         |
+|  - Humidade            |
+|  - Luz                 |
+|  - Movimento           |
+|  - Consumo Energético  |
++-----------+------------+
+            |
+            | Dados dos sensores (REST POST)
+            v
++------------------------+       +------------------------+
+| Backend / API REST     |  -->  |      Base de Dados     |
+| - Processamento        |       | - Histórico de sensores|
+| - Regras de negócio    |       | - Alertas e eventos    |
+| - Deteção de alertas   |       | - Logs de controlo     |
+| - Geração de eventos   |       +------------------------+
++-----------+------------+
+            ^
+            |
+            | Dados para visualização / comandos (REST GET + POST)
+            |
++------------------------+
+|     Frontend Web       |
+|  - Dashboard           |
+|  - Gráficos tempo real |
+|  - Alertas ativos      |
+|  - Controlo remoto     |
++------------------------+
+```
+
 ---
 
 ## C. Modelo de Informação
 
-De forma preliminar, o sistema será suportado por um modelo de dados composto pelas seguintes entidades principais. Esta definição é provisória e poderá ser ajustada durante o desenvolvimento do projeto:
+De forma preliminar, o sistema será suportado por um modelo de dados composto pelas seguintes entidades principais.
 
 ### Utilizador
 
@@ -219,4 +242,4 @@ De forma preliminar, o sistema será suportado por um modelo de dados composto p
 * timestamp
 * resolvido (boolean)
 
-> Nota: Esta estrutura foi definida de forma preventiva, com base nas funcionalidades previstas para o MVP. Alterações poderão ser realizadas conforme o desenvolvimento do projeto avance.
+> Nota: Esta estrutura foi definida de forma preventiva. Alterações poderão ser realizadas conforme o desenvolvimento do projeto avance.
