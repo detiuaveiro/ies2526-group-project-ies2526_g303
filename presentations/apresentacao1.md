@@ -121,8 +121,6 @@ O sistema é composto por um **simulador de sensores**, **backend com API REST**
 
 ### D. Arquitetura do Sistema
 
-#### Representação Simplificada
-
 ```
 +------------------------+
 |  Simulator             |
