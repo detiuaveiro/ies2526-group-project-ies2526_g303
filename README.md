@@ -1,6 +1,6 @@
 # Smart Home Dashboard
 
-## Project Abstract
+## Introdução do Projeto
 
 O **Smart Home Dashboard** é uma plataforma web destinada à monitorização e automação de ambientes domésticos inteligentes. O sistema processa fluxos de dados provenientes de sensores de temperatura, humidade, luz, movimento e consumo energético, permitindo melhorar o conforto, a segurança e a eficiência energética da habitação.
 
@@ -13,44 +13,53 @@ A solução permitirá:
 * Consulta de dados históricos;
 * Exportação de relatórios de consumo energético.
 
-O sistema será composto por um simulador de sensores, um backend com API REST, uma base de dados persistente e um dashboard web.
+O sistema é composto por um simulador de sensores, um backend que expõe uma API REST, uma base de dados relacional para persistência de dados e um dashboard web.
 
-## Project Team
+---
+
+## Equipa
+
 | Nome            | NMec   | Função Principal |
-| :---            | :---   | :---             |
+| --------------- | ------ | ---------------- |
 | Diogo Ruivo     | 126498 | Team Manager     |
 | David Cálix     | 125043 | Product Owner    |
 | Gabriel Riquito | 126427 | Architect        |
 | Rodrigo Fonseca | 124726 | DevOps Master    |
 
-## Architecture diagram
+---
 
-O sistema segue uma arquitetura em camadas distribuídas:
+## Arquitetura do Projeto
 
-1. **Camada de Simulação (Simulator)**
+O sistema segue uma arquitetura distribuída em camadas:
 
-   * Geração de dados de sensores virtuais (temperatura, humidade, luz, movimento, consumo energético);
-   * Envio dos dados para o backend via API REST.
+### 1. Camada de Simulação (Simulator)
 
-2. **Camada de Backend + API REST (Backend)**
+* Geração de dados de sensores virtuais (temperatura, humidade, luz, movimento e consumo energético);
+* Envio dos dados para o backend através de pedidos REST (POST).
 
-   * Receção de dados do simulador via API REST;
-   * Processamento de regras de negócio;
-   * Geração de alertas e eventos;
-   * Exposição de endpoints REST para o frontend e possíveis apps móveis;
-   * Envio de comandos para atuadores virtuais (luzes, aquecimento/ar condicionado).
+### 2. Camada de Backend + API REST (Backend)
 
-3. **Camada de Dados (Base de Dados)**
+* Receção de dados do simulador;
+* Processamento de regras de negócio;
+* Geração de alertas e eventos;
+* Exposição de endpoints REST para o frontend;
+* Envio de comandos para atuadores virtuais (luzes e aquecimento).
 
-   * Persistência de dados em base de dados relacional ou timeseries;
-   * Armazenamento de utilizadores, sensores, eventos e alertas.
+### 3. Camada de Dados (Base de Dados)
 
-4. **Camada de Apresentação (Frontend)**
+* Persistência de dados numa base de dados relacional;
+* Armazenamento de utilizadores, sensores, medições, eventos e alertas.
 
-   * Dashboard web;
-   * Visualização em tempo real dos dados;
-   * Gráficos históricos;
-   * Interface de controlo remoto e automação.
+### 4. Camada de Apresentação (Frontend)
+
+* Dashboard web;
+* Visualização em tempo real dos dados;
+* Gráficos históricos;
+* Interface de controlo remoto e automação.
+
+---
+
+## Diagrama da Arquitetura
 
 ```
 +------------------------+
@@ -66,15 +75,15 @@ O sistema segue uma arquitetura em camadas distribuídas:
             | Dados dos sensores (REST POST)
             v
 +------------------------+       +------------------------+
-| Backend / API REST     |  -->  |      Base de Dados      |
-| - Processamento        |       | - Histórico de sensores |
-| - Regras de negócio    |       | - Alertas e eventos     |
-| - Detecção de alertas  |       | - Logs de controlo      |
+| Backend / API REST     |  -->  |      Base de Dados     |
+| - Processamento        |       | - Histórico de sensores|
+| - Regras de negócio    |       | - Alertas e eventos    |
+| - Deteção de alertas   |       | - Logs de controlo     |
 | - Geração de eventos   |       +------------------------+
 +-----------+------------+
             ^
             |
-            | Dados formatados para visualização / comandos de controlo (REST POST + GET)
+            | Dados para visualização / comandos (REST GET + POST)
             |
 +------------------------+
 |     Frontend Web       |
@@ -85,7 +94,10 @@ O sistema segue uma arquitetura em camadas distribuídas:
 +------------------------+
 ```
 
+---
+
 ## Bookmarks
+
 * [**Gestão de Projeto (Backlog)**](https://github.com/orgs/detiuaveiro/projects/237)
 * [**Atas de Reunião**](./minutes/)
-* [**Especificacões do projecto**](./reports/)
+* [**Especificações do Projeto**](./reports/)
