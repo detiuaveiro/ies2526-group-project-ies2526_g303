@@ -28,8 +28,8 @@
 
 ### Tarefas
 | Tarefa | Responsável | Estado |
-
-| [Escrita e priorização das 12 User Stories] | [David Cálix] | [Concluido] |
-| [Setup do Repositório, criação do Kanban Board e realização da ata da reunião] | [Diogo Ruivo] | [Concluido] |
-| [Definição da arquitetura base (Backend/Frontend)] | [Gabriel Riquito] | [Concluido] |
-| [Workflow de Git] | [Rodrigo Fonseca] | [Concluido] |
+|--------|------------|--------|
+| Escrita e priorização das 12 User Stories | David Cálix | Concluído |
+| Setup do Repositório, criação do Kanban Board e realização da ata da reunião | Diogo Ruivo | Concluído |
+| Definição da arquitetura base (Backend/Frontend) | Gabriel Riquito | Concluído |
+| Workflow de Git | Rodrigo Fonseca | Concluído |
