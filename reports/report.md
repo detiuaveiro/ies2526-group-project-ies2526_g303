@@ -67,17 +67,17 @@ Utilizador focado na gestão eficiente de energia e segurança doméstica.
 
 | ID   | User Story                                                                                                                                                                               |
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US7  | Como mãe, quero ver no dashboard se todos os sensores estão online e a transmitir dados para confiar na fiabilidade do sistema.                                                          |
 | US1  | Como programador em teletrabalho, quero visualizar a temperatura e humidade do escritório em tempo real no portal web para garantir um ambiente de trabalho produtivo.                   |
+| US9  | Como reformado, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado.                                           |
+| US5  | Como mãe, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança.                            |
 | US2  | Como programador em teletrabalho, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões.                                   |
+| US10 | Como reformado, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro.                                                 |
+| US6  | Como mãe, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite.                                                |
+| US8  | Como mãe, quero aceder a uma lista de eventos com timestamps de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto.                                   |
+| US11 | Como reformado, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz.                     |
 | US3  | Como programador em teletrabalho, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório.                               |
 | US4  | Como programador em teletrabalho, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia. |
-| US5  | Como mãe, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança.                            |
-| US6  | Como mãe, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite.                                                |
-| US7  | Como mãe, quero ver no dashboard se todos os sensores estão online e a transmitir dados para confiar na fiabilidade do sistema.                                                          |
-| US8  | Como mãe, quero aceder a uma lista de eventos com timestamps de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto.                                   |
-| US9  | Como reformado, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado.                                           |
-| US10 | Como reformado, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro.                                                 |
-| US11 | Como reformado, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz.                     |
 | US12 | Como reformado, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família.                                    |
 
 ---
