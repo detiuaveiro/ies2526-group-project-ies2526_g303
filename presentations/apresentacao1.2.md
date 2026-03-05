@@ -93,20 +93,20 @@ A equipa definiu e atribuiu os papéis principais: Team Manager, Product Owner, 
 
 ### B. Cenários Suportados (User Stories)
 
-| ID   | User Story                                                               |
-| ---- | ------------------------------------------------------------------------ |
-| US1  | Visualizar temperatura e humidade do escritório em tempo real.           |
-| US2  | Ligar/desligar aquecimento e luzes através do dashboard.                 |
-| US3  | Receber notificação se a humidade sair dos limites ideais.               |
-| US4  | Ajuste automático da intensidade das luzes com base na luz natural.      |
-| US5  | Alerta imediato no portal se for detetado movimento no quarto do bebé.   |
-| US6  | Consultar gráficos de temperatura das últimas 24 horas.                  |
-| US7  | Visualizar se todos os sensores estão online.                            |
-| US8  | Aceder a lista de eventos de luzes ou movimento.                         |
-| US9  | Visualizar consumo de energia atual por divisão.                         |
-| US10 | Acender luzes do corredor automaticamente se detetado movimento à noite. |
-| US11 | Alertar se o consumo diário ultrapassar um limite definido.              |
-| US12 | Exportar relatório semanal de gastos energéticos.                        |
+| ID   | User Story                                                                                                                                                                               |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US7  | Como mãe, quero ver no dashboard se todos os sensores estão online e a transmitir dados para confiar na fiabilidade do sistema.                                                          |
+| US1  | Como programador em teletrabalho, quero visualizar a temperatura e humidade do escritório em tempo real no portal web para garantir um ambiente de trabalho produtivo.                   |
+| US9  | Como reformado, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado.                                           |
+| US5  | Como mãe, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança.                            |
+| US2  | Como programador em teletrabalho, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões.                                   |
+| US10 | Como reformado, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro.                                                 |
+| US6  | Como mãe, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite.                                                |
+| US8  | Como mãe, quero aceder a uma lista de eventos com timestamps de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto.                                   |
+| US11 | Como reformado, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz.                     |
+| US3  | Como programador em teletrabalho, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório.                               |
+| US4  | Como programador em teletrabalho, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia. |
+| US12 | Como reformado, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família.                                    |
 
 ---
 
