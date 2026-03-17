@@ -2,18 +2,18 @@
 
 ## Introdução do Projeto
 
-O **Smart Home Dashboard** é uma plataforma web destinada à monitorização e automação de ambientes domésticos inteligentes. O sistema processa fluxos de dados provenientes de sensores de temperatura, humidade, luz, movimento e consumo energético, permitindo melhorar o conforto, a segurança e a eficiência energética da habitação.
+O **Smart Home Dashboard** é uma plataforma web centrada no utilizador, destinada a apoiar a gestão e o controlo do seu ambiente doméstico inteligente. O sistema processa fluxos de dados provenientes de sensores de temperatura, humidade, luz, movimento e consumo energético, permitindo ao utilizador melhorar o seu conforto, segurança e eficiência energética no dia a dia.
 
-A solução permitirá:
+A solução permitirá ao utilizador:
 
-* Monitorização em tempo real das condições ambientais;
-* Controlo remoto de dispositivos (aquecimento e iluminação);
-* Automação baseada em regras (ex.: iluminação automática);
-* Geração de alertas em situações anómalas;
-* Consulta de dados históricos;
-* Exportação de relatórios de consumo energético.
+* Monitorizar em tempo real as condições ambientais da sua habitação;
+* Controlar remotamente dispositivos (aquecimento e iluminação);
+* Definir automações baseadas em regras (ex.: iluminação automática);
+* Receber alertas em situações anómalas;
+* Consultar dados históricos;
+* Exportar relatórios de consumo energético.
 
-O sistema é composto por um simulador de sensores, um backend que expõe uma API REST, uma base de dados relacional para persistência de dados e um dashboard web.
+O sistema será composto por um simulador de sensores, um backend com API REST, uma base de dados persistente e um dashboard web.
 
 ---
 
