@@ -243,3 +243,23 @@ De forma preliminar, o sistema será suportado por um modelo de dados composto p
 * resolvido (boolean)
 
 > Nota: Esta estrutura foi definida de forma preventiva. Alterações poderão ser realizadas conforme o desenvolvimento do projeto avance.
+
+---
+
+# D. Progresso do Projeto
+
+## D.1. Sprint 1
+
+Durante o Sprint 1, a equipa focou-se na definição do conceito do produto, organização do trabalho e estruturação inicial do projeto.
+
+Foram realizadas as seguintes atividades:
+
+- Definição do tema do projeto: Smart Home Dashboard;
+- Identificação e descrição das personas principais;
+- Levantamento e escrita das User Stories iniciais;
+- Definição da arquitetura base do sistema (simulador, backend, base de dados e frontend);
+- Configuração do repositório GitHub e criação do workflow de desenvolvimento (feature-branching);
+- Criação do quadro de gestão de tarefas (GitHub Projects);
+- Distribuição de papéis e responsabilidades pela equipa.
+
+Este sprint permitiu estabelecer as bases funcionais e técnicas necessárias para o desenvolvimento do sistema nas fases seguintes.

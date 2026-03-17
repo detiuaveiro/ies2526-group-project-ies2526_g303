@@ -61,7 +61,7 @@ O sistema segue uma arquitetura distribuída em camadas:
 
 ## Diagrama da Arquitetura
 
-![Arquitetura](/images/sprint2/arquitetura2.png)
+![Arquitetura](/images/sprint2/sprint2_arquitetura1.png)
 
 ---
 
