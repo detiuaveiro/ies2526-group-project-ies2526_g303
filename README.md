@@ -61,38 +61,7 @@ O sistema segue uma arquitetura distribuída em camadas:
 
 ## Diagrama da Arquitetura
 
-```
-+------------------------+
-|  Simulator             |
-|  (Sensores Virtuais)   |
-|  - Temperatura         |
-|  - Humidade            |
-|  - Luz                 |
-|  - Movimento           |
-|  - Consumo Energético  |
-+-----------+------------+
-            |
-            | Dados dos sensores (REST POST)
-            v
-+------------------------+       +------------------------+
-| Backend / API REST     |  -->  |      Base de Dados     |
-| - Processamento        |       | - Histórico de sensores|
-| - Regras de negócio    |       | - Alertas e eventos    |
-| - Deteção de alertas   |       | - Logs de controlo     |
-| - Geração de eventos   |       +------------------------+
-+-----------+------------+
-            ^
-            |
-            | Dados para visualização / comandos (REST GET + POST)
-            |
-+------------------------+
-|     Frontend Web       |
-|  - Dashboard           |
-|  - Gráficos tempo real |
-|  - Alertas ativos      |
-|  - Controlo remoto     |
-+------------------------+
-```
+![Arquitetura](/images/sprint2/arquitetura2.png)
 
 ---
 

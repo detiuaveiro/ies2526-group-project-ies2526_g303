@@ -1,0 +1,33 @@
+graph TD
+    subgraph "Camada de Simulação"
+        SIM[Simuladores]
+    end
+
+    subgraph "Camada IoT"
+        S[Sensores]
+        A[Atuadores]
+    end
+
+    MQ[Message Broker]
+
+    subgraph "Backend"
+        BL[Lógica de Negócio]
+        DB[(Base de Dados)]
+        API[API REST]
+    end
+
+    subgraph "Frontend"
+        WA[Web Dashboard]
+    end
+
+    SIM <--> S
+    SIM <--> A
+
+    S --> MQ
+    MQ --> BL
+    BL <--> DB
+
+    WA <--> API
+    API <--> BL
+    BL --> MQ
+    MQ --> A
