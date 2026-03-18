@@ -25,8 +25,7 @@ O sistema será composto por um simulador de sensores, um backend com API REST, 
 
 ### 1. Programador em Teletrabalho
 
-Utilizador que passa grande parte do tempo a trabalhar em casa.
-
+Utilizador que passa grande parte do tempo a trabalhar em casa e necessita de controlo ambiental para produtividade.
 **Objetivos:**
 
 * Garantir conforto térmico no escritório;
@@ -38,7 +37,7 @@ Utilizador que passa grande parte do tempo a trabalhar em casa.
 
 ### 2. Mãe
 
-Utilizadora responsável pelo bem-estar e segurança do bebé.
+Utilizadora focada no bem-estar, segurança e monitorização constante do ambiente dos dependentes (bebé).
 
 **Objetivos:**
 
@@ -63,22 +62,33 @@ Utilizador focado na gestão eficiente de energia e segurança doméstica.
 
 ---
 
+### 4. Admin / Técnico de Sistemas
+
+Responsável pela instalação, manutenção técnica e integridade do pipeline de dados do sistema.
+
+**Objetivos:**
+
+* Garantir a integridade do pipeline de dados entre o simulador de sensores e o backend;
+* Monitorizar a performance da API REST, identificando latências ou erros antes que afetem o utilizador final;
+* Validar a conectividade de todos os sensores virtuais através da Message Queue;
+* Centralizar e analisar logs do sistema para facilitar o debugging e a manutenção preventiva;
+
 ## A.3. Cenários Suportados (User Stories)
 
-| ID   | User Story |
-|------|------------|
-| US7  | Como admin, quero consultar um dashboard de estado técnico que indique se todos os sensores virtuais estão a publicar dados com sucesso na Message Queue, para garantir que o pipeline de dados está operacional após o setup. |
-| US1  | Como admin, quero monitorizar a latência e os erros das rotas da API REST através de logs centralizados, para detetar falhas de comunicação entre o backend e o frontend antes que o utilizador note problemas. |
-| US9  | Como reformado, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado. |
-| US5  | Como mãe, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança. |
-| US2  | Como programador em teletrabalho, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões. |
-| US10 | Como reformado, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro. |
-| US6  | Como mãe, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite. |
-| US8  | Como mãe, quero aceder a uma lista de eventos com timestamps de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto. |
-| US11 | Como reformado, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz. |
-| US3  | Como programador em teletrabalho, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório e quando devo regular a temperatura, para assim manter um trabalho produtivo. |
-| US4  | Como programador em teletrabalho, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia. |
-| US12 | Como reformado, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família. |
+| ID   | User Story | Explicação
+|------|------------| -----------
+**US1** | Monitorização de Saúde do Sistema | Como **admin**, quero monitorizar a latência e os erros das rotas da API REST através de logs centralizados, para detetar falhas de comunicação entre o backend e o frontend antes que o utilizador note problemas. |
+| **US2** | Atuação Remota | Como **programador em teletrabalho**, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões. |
+| **US3** | Alerta de Qualidade do Ar | Como **programador em teletrabalho**, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório e quando devo regular a temperatura. |
+| **US4** | Automação de Luminosidade | Como **programador em teletrabalho**, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia. |
+| **US5** | Deteção de Intrusão/Movimento | Como **mãe**, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança. |
+| **US6** | Histórico Térmico | Como **mãe**, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite. |
+| **US7** | Verificação de Conetividade | Como **admin**, quero consultar um dashboard de estado técnico que indique se todos os sensores virtuais estão a publicar dados com sucesso na Message Queue, para garantir que o pipeline de dados está operacional. |
+| **US8** | Log de Atividade | Como **mãe**, quero aceder a uma lista de eventos (timestamps) de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto. |
+| **US9** | Monitorização de Consumo | Como **reformado**, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado. |
+| **US10** | Iluminação de Segurança | Como **reformado**, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro. |
+| **US11** | Notificação de Gastos | Como **reformado**, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz. |
+| **US12** | Exportação de Dados | Como **reformado**, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família. |
 
 ---
 
@@ -87,55 +97,68 @@ Utilizador focado na gestão eficiente de energia e segurança doméstica.
 ## B.1. Requisitos de Qualidade Principais
 
 ### Desempenho
-
-O sistema deverá processar fluxos de dados em tempo real provenientes dos sensores simulados, garantindo baixa latência na atualização do dashboard.
+O sistema deve garantir uma experiência fluida de monitorização em tempo real e resposta rápida aos comandos de atuação.
+* **Latência End-to-End:** O tempo decorrido entre a geração de um evento no simulador e a sua visualização no dashboard não deve ultrapassar os **500ms** em condições normais de rede.
+* **Processamento da API:** Os endpoints da API REST devem responder a pedidos de leitura (GET) em menos de **200ms**.
+* **Eficiência de Dados:** O sistema deve ser capaz de processar fluxos simultâneos de, pelo menos, 5 sensores por divisão sem degradação da performance do backend.
 
 ### Escalabilidade
-
-A arquitetura será modular e baseada em containers (Docker), permitindo escalar individualmente o simulador, backend ou frontend.
+A arquitetura foi desenhada para crescer horizontalmente, permitindo a adição de novos módulos ou instâncias sem necessidade de refatoração do código base.
+* **Containerização:** O uso de **Docker e Docker Compose** permite isolar os serviços (Frontend, Backend, Database e Message Queue), possibilitando o escalonamento individual de cada módulo conforme a carga de trabalho.
 
 ### Disponibilidade
-
-A API REST e o backend deverão estar disponíveis continuamente para permitir consulta e controlo remoto.
+O sistema deve assegurar que o utilizador consiga monitorizar e controlar a sua habitação de forma contínua.
+* **Uptime Alvo:** O backend e a base de dados devem garantir uma disponibilidade de **99.5%** durante a fase de prototipagem.
+* **Resiliência:** Em caso de falha do simulador de sensores, o backend deve manter-se funcional, permitindo a consulta de dados históricos e a gestão de perfis de utilizador sem interrupções de serviço.
 
 ### Segurança
-
-O acesso ao sistema deverá incluir autenticação básica e validação de permissões por tipo de utilizador.
+A proteção dos dados e o controlo físico dos atuadores da habitação são tratados como requisitos críticos.
+* **Autenticação e Autorização:** Implementação de **JWT (JSON Web Tokens)** para gestão de sessões seguras e stateless.
+* **RBAC (Role-Based Access Control):** Diferenciação rigorosa de permissões. Apenas utilizadores com a role `Admin` têm acesso aos logs de saúde do sistema e dashboards de infraestrutura (US1 e US7).
+* **Sanitização de Dados:** Validação estrita de todos os inputs da API para prevenir ataques de injeção e garantir a integridade da base de dados.
 
 ### Manutenibilidade
-
-O sistema será organizado em módulos independentes (simulador, backend, frontend), com código documentado e estruturado.
+O código e a infraestrutura devem ser fáceis de evoluir, testar e corrigir.
+* **Arquitetura em Camadas:** Separação clara entre lógica de negócio, persistência de dados e interface (Clean Architecture), facilitando a manutenção isolada de cada componente.
+* **Documentação da API:** Uso de **Swagger/OpenAPI** para documentar todos os endpoints, eliminando ambiguidades na integração entre o frontend, backend e simulador.
+* **Standardização:** Adoção de normas5203. e convenções de nomeclatura consistentes (Clean Code) em todo o repositório GitHub para facilitar o trabalho colaborativo.
 
 ---
 
 ## B.2. Visão Arquitetural (Estática)
 
-O sistema segue uma arquitetura em camadas distribuídas:
+O sistema adota uma arquitetura de serviços distribuídos e desacoplados, organizada em cinco componentes principais que comunicam via protocolos standard (REST e Pub/Sub).
 
-1. **Camada de Simulação (Simulator)**
+### 1. Camada de Simulação (IoT Simulator)
+Responsável por replicar o comportamento de uma habitação inteligente.
+* **Sensores Virtuais:** Gera fluxos de dados sintéticos (Temperatura, Humidade, Luminosidade, Movimento e Consumo).
+* **Atuadores Virtuais:** Recebe comandos para alterar o estado de dispositivos (Luzes e Climatização).
+* **Comunicação:** Publica dados de telemetria no **Message Broker** e expõe endpoints para controlo direto via **API REST**.
 
-   * Geração de dados de sensores virtuais (temperatura, humidade, luz, movimento, consumo energético);
-   * Envio dos dados para o backend via API REST.
+### 2. Message Broker (Event Bus)
+O núcleo de integração assíncrona do sistema (ex: RabbitMQ ou Mosquitto/MQTT).
+* **Desacoplamento:** Permite que o simulador envie dados sem depender da disponibilidade imediata do backend.
+* **Processamento:** Facilita a monitorização de saúde do pipeline (US7) e a distribuição de eventos para múltiplos subscritores.
 
-2. **Camada de Backend + API REST (Backend)**
+### 3. Camada de Backend (Core API)
+Motor de inteligência e orquestração do sistema, desenvolvido em [Tecnologia, ex: Node.js/Python/Java].
+* **Ingestão de Dados:** Consome eventos do Broker e valida a integridade dos dados.
+* **Regras de Negócio:** Processa automações (ex: ligar luzes se houver movimento) e gera alertas.
+* **API Gateway:** Expõe uma interface **RESTful** documentada (Swagger) para o frontend.
 
-   * Receção de dados do simulador via API REST;
-   * Processamento de regras de negócio;
-   * Geração de alertas e eventos;
-   * Exposição de endpoints REST para o frontend e possíveis apps móveis;
-   * Envio de comandos para atuadores virtuais (luzes, aquecimento/ar condicionado).
+### 4. Camada de Persistência (Database)
+Garante a integridade e o histórico da solução.
+* **Base de Dados Relacional/Timeseries:** Armazenamento de perfis de utilizador, logs de eventos de sensores e configurações de dispositivos.
+* **Audit Log:** Registo de comandos enviados aos atuadores para auditoria futura.
 
-3. **Camada de Dados (Base de Dados)**
+### 5. Camada de Apresentação (Frontend)
+Aplicação Web Single Page Application (SPA) desenvolvida em [Tecnologia, ex: React/TypeScript].
+* **Dashboard Dinâmico:** Visualização de telemetria em tempo real e estado dos alertas.
+* **Painel de Controlo:** Interface para atuação manual e configuração de limites de consumo (US11).
+* **Admin View:** Consola técnica para monitorização de latência e saúde dos serviços (US1).
+---
 
-   * Persistência de dados em base de dados relacional ou timeseries;
-   * Armazenamento de utilizadores, sensores, eventos e alertas.
-
-4. **Camada de Apresentação (Frontend)**
-
-   * Dashboard web;
-   * Visualização em tempo real dos dados;
-   * Gráficos históricos;
-   * Interface de controlo remoto e automação.
+Aqui tens a versão corrigida e realista. Deixei de lado o "faz de conta" e meti o que realmente precisas para isso não rebentar ao primeiro teste: **WebSockets** para tempo real e uma estrutura de dados que faz sentido.
 
 ---
 
@@ -143,60 +166,47 @@ O sistema segue uma arquitetura em camadas distribuídas:
 
 ### Fluxo principal de dados
 
-1. O **Simulador** gera dados periódicos de sensores.
-2. Os dados são enviados para o **Backend** através da API REST POST.
-3. O Backend:
+1.  **Simulador -> Backend:** O Simulador envia dados periódicos via **REST POST**. Para comandos (atuadores), o Simulador mantém uma ligação **WebSocket** aberta para receber ordens imediatas do Backend.
+2.  **Processamento:** O Backend processa os dados, valida permissões de utilizador, avalia regras de automação e persiste a informação.
+3.  **Notificações em Tempo Real:** Sempre que um alerta é gerado ou um dado muda, o Backend "empurra" a info para o Frontend via **WebSockets (ou SSE)**, garantindo feedback imediato sem necessidade de refresh.
+4.  **Controlo Remoto:** O Frontend envia comandos (POST). O Backend valida e reencaminha para o Simulador através da ligação bidirecional ativa.
 
-   * Processa os dados;
-   * Avalia regras de automação;
-   * Gera alertas quando necessário;
-   * Armazena os dados na base de dados.
-4. O **Frontend** realiza pedidos à API REST para:
-
-   * Obter dados atuais;
-   * Consultar histórico;
-   * Visualizar alertas;
-   * Enviar comandos de atuação (ex.: ligar luz).
 
 ### Exemplo: Alerta de Movimento (US5)
 
-1. Sensor de movimento virtual gera evento.
-2. Backend deteta movimento durante período de sono.
-3. Sistema cria registo de alerta.
-4. Dashboard apresenta notificação visual imediata.
+1.  Sensor de movimento deteta atividade.
+2.  Backend recebe o dado, cruza com o horário de sono definido para aquele `utilizador_id`.
+3.  Sistema cria registo de `Alerta` associado ao `Evento`.
+4.  **Push Server-to-Client:** O Dashboard recebe um evento WebSocket e faz o pop-up da notificação instantaneamente.
 
-### Diagrama da Arquitetura
+### Diagrama da Arquitetura (Esboço)
 
 ```
-+------------------------+
-|  Simulator             |
-|  (Sensores Virtuais)   |
-|  - Temperatura         |
-|  - Humidade            |
-|  - Luz                 |
-|  - Movimento           |
-|  - Consumo Energético  |
-+-----------+------------+
-            |
-            | Dados dos sensores (REST POST)
-            v
-+------------------------+       +------------------------+
-| Backend / API REST     |  -->  |      Base de Dados     |
-| - Processamento        |       | - Histórico de sensores|
-| - Regras de negócio    |       | - Alertas e eventos    |
-| - Deteção de alertas   |       | - Logs de controlo     |
-| - Geração de eventos   |       +------------------------+
-+-----------+------------+
++------------------------+           +------------------------+
+|  Simulator             |           |      Base de Dados     |
+|  (Sensores Virtuais)   |           | - Histórico e Alertas  |
+|  - Temperatura / Luz   |           | - Users e Permissões   |
+|  - Movimento / Energia |           | - Logs de Atuação      |
++-----------+------------+           +-----------+------------+
+            |                                    ^
+            | (1) Dados (REST POST)              |
+            | (2) Comandos (WebSockets)          | (3) Persistência
+            v                                    |
++-----------+------------+           +-----------+------------+
+| Backend / API REST     |<----------+  Business Logic / Regras|
+| - Auth & Permissões    |           | - Engine de Alertas    |
+| - WebSocket Manager    |           | - Processamento Dados  |
++-----------+------------+           +-----------+------------+
             ^
             |
-            | Dados para visualização / comandos (REST GET + POST)
+            | (4) Real-time Updates (WebSockets Push)
+            | (5) Comandos e Queries (REST)
             |
-+------------------------+
++-----------+------------+
 |     Frontend Web       |
-|  - Dashboard           |
-|  - Gráficos tempo real |
-|  - Alertas ativos      |
-|  - Controlo remoto     |
+|  - Dashboard (Live)    |
+|  - Gráficos & Alertas  |
+|  - Gestão de Dispositivos|
 +------------------------+
 ```
 
@@ -204,62 +214,39 @@ O sistema segue uma arquitetura em camadas distribuídas:
 
 ## C. Modelo de Informação
 
-De forma preliminar, o sistema será suportado por um modelo de dados composto pelas seguintes entidades principais.
-
 ### Utilizador
-
-* id
-* nome
-* email
-* password (encriptada)
+* `id` (PK)
+* `nome`
+* `email` (Unique)
+* `password_hash`
 
 ### Sensor
-
-* id
-* tipo (temperatura, humidade, luz, movimento, energia)
-* divisão
-* estado (online/offline)
+* `id` (PK)
+* `utilizador_id` (FK) 
+* `tipo` (Enum: temperatura, humidade, luz, movimento, energia)
+* `unidade_medida` (String: "ºC", "Lux", "kWh", etc.)
+* `divisao`
+* `estado` (online/offline)
 
 ### DadosSensor
+* `id` (PK)
+* `sensor_id` (FK)
+* `valor` (Float)
+* `timestamp`
 
-* id
-* sensor_id
-* valor
-* timestamp
-
-### Evento
-
-* id
-* tipo_evento (movimento, luz ligada, etc.)
-* timestamp
-* divisão
+### Evento (Log de Atividade)
+* `id` (PK)
+* `sensor_id` (FK)
+* `tipo_evento` (Ex: "deteção_movimento", "luz_ligada_manual")
+* `timestamp`
 
 ### Alerta
-
-* id
-* tipo
-* descrição
-* timestamp
-* resolvido (boolean)
-
-> Nota: Esta estrutura foi definida de forma preventiva. Alterações poderão ser realizadas conforme o desenvolvimento do projeto avance.
+* `id` (PK)
+* `evento_id` (FK) 
+* `nivel_criticidade` (baixa, media, alta)
+* `descricao`
+* `resolvido` (boolean)
+* `timestamp`
 
 ---
 
-# D. Progresso do Projeto
-
-## D.1. Sprint 1
-
-Durante o Sprint 1, a equipa focou-se na definição do conceito do produto, organização do trabalho e estruturação inicial do projeto.
-
-Foram realizadas as seguintes atividades:
-
-- Definição do tema do projeto: Smart Home Dashboard;
-- Identificação e descrição das personas principais;
-- Levantamento e escrita das User Stories iniciais;
-- Definição da arquitetura base do sistema (simulador, backend, base de dados e frontend);
-- Configuração do repositório GitHub e criação do workflow de desenvolvimento (feature-branching);
-- Criação do quadro de gestão de tarefas (GitHub Projects);
-- Distribuição de papéis e responsabilidades pela equipa.
-
-Este sprint permitiu estabelecer as bases funcionais e técnicas necessárias para o desenvolvimento do sistema nas fases seguintes.
