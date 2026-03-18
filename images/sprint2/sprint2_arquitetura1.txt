@@ -1,6 +1,6 @@
-graph TD
+ graph TD
     subgraph "Camada de Simulação"
-        SIM[Simuladores]
+        SIM["Simuladores      (Python)"]
     end
 
     subgraph "Camada IoT"
@@ -11,13 +11,15 @@ graph TD
     MQ[Message Broker]
 
     subgraph "Backend"
-        BL[Lógica de Negócio]
-        DB[(Base de Dados)]
-        API[API REST]
+        BL["Lógica de Negócio (Java)"]
+        API["API REST (Springboot)"]
     end
 
+    DB[("Base de Dados (SQL)")]
+
+
     subgraph "Frontend"
-        WA[Web Dashboard]
+        WA["Web Dashboard (TypeScript)"]
     end
 
     SIM <--> S
