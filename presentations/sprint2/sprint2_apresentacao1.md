@@ -117,7 +117,7 @@ Para demonstrar como os protótipos se ligam à arquitetura e às user stories, 
 * Diagramas de interação (Frontend ↔ Backend ↔ Sensores)
 * Protótipos associados a cada caso de uso
 
-👉 **Abrir diagramas e protótipos detalhados:**
+**Abrir diagramas e protótipos detalhados:**
 
 [Ver Diagramas de User Stories](../../prototypes/diagramas.md)
 
