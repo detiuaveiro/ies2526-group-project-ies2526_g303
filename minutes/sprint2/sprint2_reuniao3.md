@@ -8,8 +8,9 @@
 * [Rodrigo Fonseca] - DevOps Master
 
 ### Agenda
-- Conclusão do protótipo
+- Conclusão dos protótipos
 - Redação do report
+- Criação do ficheiro de apresentacão
 
 ### Tarefas
 | Tarefa | Responsável | Estado |
@@ -17,3 +18,4 @@
 | Desenvolvimento dos componentes da UI | Todos os elementos | Concluido |
 | Redação do report| Diogo Ruivo | Concluído |
 | Redação da ata de reunião 4| Diogo Ruivo | Concluído |
+| Criacão do ficheiro de apresentacão | Rodrigo Fonseca | Concluído |

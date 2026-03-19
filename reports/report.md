@@ -156,12 +156,6 @@ Aplicação Web Single Page Application (SPA) desenvolvida em [Tecnologia, ex: R
 * **Dashboard Dinâmico:** Visualização de telemetria em tempo real e estado dos alertas.
 * **Painel de Controlo:** Interface para atuação manual e configuração de limites de consumo (US11).
 * **Admin View:** Consola técnica para monitorização de latência e saúde dos serviços (US1).
-<<<<<<< HEAD
-=======
----
-
-Aqui tens a versão corrigida e realista. Deixei de lado o "faz de conta" e meti o que realmente precisas para isso não rebentar ao primeiro teste: **WebSockets** para tempo real e uma estrutura de dados que faz sentido.
->>>>>>> 861ee7f6ee8115ca4c4d06ddd47e5760e9ae48e5
 
 ---
 
@@ -250,5 +244,3 @@ Aqui tens a versão corrigida e realista. Deixei de lado o "faz de conta" e meti
 * `descricao`
 * `resolvido` (boolean)
 * `timestamp`
-
----

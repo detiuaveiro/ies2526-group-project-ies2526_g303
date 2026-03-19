@@ -30,8 +30,8 @@
 ### Tarefas
 | Tarefa | Responsável | Estado |
 |--------|------------|--------|
-| Desenvolvimento dos componentes da UI | Todos os elementos | Planeado |
-| Implementação das alterações na arquitetura | Gabriel Riquito | Em curso |
-| Configuração do ambiente de execução do protótipo | Rodrigo Fonseca e David Cálix| Planeado |
-| Monitorização de marcos e prazos da equipa | Diogo Ruivo | Em curso |
+| Desenvolvimento dos componentes da UI | Todos os elementos | Concluído |
+| Implementação das alterações na arquitetura | Gabriel Riquito | Concluído |
+| Configuração do ambiente de execução do protótipo | Rodrigo Fonseca e David Cálix | Concluído |
+| Monitorização de marcos e prazos da equipa | Diogo Ruivo | Concluído |
 | Redação da ata de reunião 3 | Diogo Ruivo | Concluído |
