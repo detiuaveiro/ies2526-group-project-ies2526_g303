@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartHome OS - Energy Consumption Alert</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "secondary": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen">
+<div class="flex h-full">
+<!-- Sidebar (EXACT matching original layout) -->
+<aside class="w-64 flex-shrink-0 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 transition-all duration-300">
+<!-- Logo Section -->
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined active-icon">home_work</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">SmartHome</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">OS Dashboard</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto scrollbar-hide">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-full shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined active-icon text-[20px]">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<span class="text-sm font-semibold">Devices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-sm font-semibold">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="text-sm font-semibold">Energy History</span>
+</a>
+<div class="pt-6 pb-2">
+<div class="h-px bg-slate-100 dark:bg-slate-800 mx-4"></div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-semibold">Settings</span>
+</a>
+</nav>
+<!-- Bottom Status Card -->
+<div class="p-4 mt-auto">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-3xl p-5">
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3">Grid Stability</p>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-4/5"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-3 font-medium">Optimal efficiency</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-[#f9fafb] dark:bg-background-dark overflow-y-auto">
+<!-- Header (EXACT matching original layout) -->
+<header class="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Energy Consumption Alert</h2>
+<p class="text-xs text-slate-500 mt-0.5">Real-time usage monitoring and critical notifications</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Live/Analytics Toggle -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-full">
+<button class="px-5 py-1.5 text-xs font-bold bg-white dark:bg-slate-700 shadow-sm rounded-full text-primary">Live</button>
+<button class="px-5 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">History</button>
+</div>
+<!-- User Profile -->
+<div class="flex items-center gap-4 pl-6 border-l border-slate-100 dark:border-slate-800">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">José Ruivo</p>
+<p class="text-[11px] text-slate-500 font-medium">Home Owner</p>
+</div>
+<div class="size-11 rounded-full border-2 border-primary/20 p-0.5">
+<img alt="José Ruivo" class="size-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_SvszcAsE56rqKyhgw-BwAAYnaTB4laCWcOpor4TpvplgIhBevy2y-9d8gXim41Bka7G3_Qb_hIN04uooLrVREBeVdgHjcecVSCKJB6p9iJrD9gUQl0CQ3o978ThZAVi26Co8cpx4Z8xHA7MWwuqbbpI70t58jluf9njgvv4kB75cX4L9vteso2hKTFHcr2yfANekY_gvglAMpqw3HXlRNTA02GxMS27ON-qd67QOna55rlvx8osk4-zCcThW5m9JS9NCxzc959o"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8 max-w-[1200px] mx-auto w-full">
+<!-- 1. Red Alert Banner -->
+<div class="bg-danger/10 border border-danger/20 rounded-3xl p-6 flex items-start gap-4">
+<div class="size-12 rounded-full bg-danger/20 flex items-center justify-center text-danger flex-shrink-0">
+<span class="material-symbols-outlined active-icon">warning</span>
+</div>
+<div class="flex-1">
+<h3 class="text-danger font-bold text-lg">Energy Limit Exceeded</h3>
+<p class="text-danger/80 text-sm font-medium">Your home consumption has surpassed the daily safety threshold by 28%.</p>
+</div>
+</div>
+<!-- 2. Daily Energy Limit Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm p-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="text-lg font-bold">Daily Energy Limit</h4>
+<p class="text-sm text-slate-500">Usage period: Today (00:00 - Present)</p>
+</div>
+<span class="px-4 py-1.5 bg-danger/10 text-danger text-xs font-bold rounded-full uppercase tracking-wider">Critical</span>
+</div>
+<div class="flex items-end justify-between mb-3">
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-bold tracking-tight text-slate-900 dark:text-white">12.8</span>
+<span class="text-xl font-medium text-slate-400">/ 10.0 kWh</span>
+</div>
+<span class="text-danger font-bold text-sm">+2.8 kWh Over</span>
+</div>
+<div class="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-danger w-full"></div>
+</div>
+</div>
+<!-- 3. Top Consumers List -->
+<div class="space-y-6">
+<h3 class="text-lg font-bold tracking-tight px-2">Top Consumers (Last 24h)</h3>
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm divide-y divide-slate-50 dark:divide-slate-800/50 overflow-hidden">
+<!-- EV Charger -->
+<div class="p-6 flex items-center justify-between group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-5">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined active-icon">ev_station</span>
+</div>
+<div>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">EV Charger</p>
+<p class="text-xs text-slate-500">Level 2 Charging Port</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-slate-900 dark:text-slate-100">4.5 kWh</p>
+<p class="text-[10px] font-bold text-danger uppercase">High Load</p>
+</div>
+</div>
+<!-- Air Conditioning -->
+<div class="p-6 flex items-center justify-between group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-5">
+<div class="size-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined active-icon">ac_unit</span>
+</div>
+<div>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">Air Conditioning</p>
+<p class="text-xs text-slate-500">Central HVAC System</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-slate-900 dark:text-slate-100">3.2 kWh</p>
+<p class="text-[10px] font-bold text-accent-amber uppercase">Running</p>
+</div>
+</div>
+<!-- Kitchen Cluster -->
+<div class="p-6 flex items-center justify-between group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-5">
+<div class="size-12 rounded-2xl bg-accent-purple/10 flex items-center justify-center text-accent-purple">
+<span class="material-symbols-outlined active-icon">kitchen</span>
+</div>
+<div>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">Kitchen Cluster</p>
+<p class="text-xs text-slate-500">Smart Appliances (Oven, Fridge)</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-slate-900 dark:text-slate-100">2.1 kWh</p>
+<p class="text-[10px] font-bold text-slate-400 uppercase">Standby</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="flex-1 bg-primary text-white font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+                    Manage Limit
+                </button>
+<button class="flex-1 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 font-bold py-4 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    Review Consumption History
+                </button>
+</div>
+<!-- Footer Affirmation -->
+<footer class="flex items-center justify-center gap-4 text-slate-400 py-8 border-t border-slate-100 dark:border-slate-800 mt-12">
+<span class="material-symbols-outlined text-danger active-icon">shield_with_heart</span>
+<p class="text-sm italic font-medium">Monitoring your home's energy footprint for a safer, greener future.</p>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

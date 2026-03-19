@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "secondary": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(76, 153, 230, 0.1) 0%, rgba(76, 153, 230, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-64 flex-col bg-white dark:bg-slate-900 border-r border-primary/10 hidden md:flex">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">child_care</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">SmartHome</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Nursery Control</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined active-icon">thermostat</span>
+<span class="text-sm font-medium">Sensors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span class="text-sm font-medium">Cameras</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm font-medium">Event History</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-4">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-4">
+<p class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Storage Status</p>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-2">75% of cloud storage used</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold">Thermal Monitoring - Baby's Room</h2>
+<p class="text-xs text-slate-500">Reviewing temperature trends for the last 24 hours</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Date Selector -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+<button class="px-4 py-1.5 text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm rounded-lg text-primary">Today</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700">Yesterday</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700">Last Week</button>
+</div>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-6">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Sarah Jenkins</p>
+<p class="text-[10px] text-slate-500">Home Owner</p>
+</div>
+<img alt="Sarah Jenkins" class="size-10 rounded-full border-2 border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9wts1aXZw8ppHQtpL3Qyde6Hy2u7co0xFu4LpZT0-FArYKDRa8QOkTmhdf5-UErDI4pik4vF2wnImgD6MVJQRnD2-oa1PurRjVpvuK3uApLPhe1MD7QIZyYt17o4Afw8yeA09AANruYdfb183mY0K0M79E-cbW6eN66dh98oV3RhyIFIjDJ6u0FhJqegAM0AqegaoWfkE2nRE8_XlcwLOJBtJhyb9CGhfzOXhhftvWW9xkNojKKAGU4cPEeIaW0yAEPlgRgAm9ro"/>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-5xl mx-auto w-full space-y-6">
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">device_thermostat</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Current Temperature</p>
+<p class="text-2xl font-bold">21.2°C</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="size-14 rounded-full bg-accent-amber/10 flex items-center justify-center text-accent-amber">
+<span class="material-symbols-outlined text-3xl">trending_up</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">24h Min / Max</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-slate-100">18.5°C / 22.1°C</p>
+</div>
+</div>
+</div>
+<!-- Main Chart Component -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden p-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold">Temperature Trends</h3>
+<p class="text-xs text-slate-400">Real-time data from Main Nursery Sensor</p>
+</div>
+<div class="flex items-center gap-4 text-xs">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-primary"></div>
+<span>Temperature</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-3 bg-secondary/20 rounded-sm"></div>
+<span class="text-slate-400 font-medium">Ideal Zone (18-22°C)</span>
+</div>
+</div>
+</div>
+<!-- Chart Visualization Area -->
+<div class="relative h-[400px] w-full mt-4">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-[10px] text-slate-400 pr-4 border-r border-slate-100 dark:border-slate-800">
+<span>25°C</span>
+<span>22°C</span>
+<span>20°C</span>
+<span>18°C</span>
+<span>15°C</span>
+</div>
+<div class="ml-12 h-full relative">
+<!-- Ideal Zone Shading -->
+<div class="absolute inset-x-0 top-[12.5%] bottom-[37.5%] bg-secondary/5 dark:bg-secondary/10 border-y border-dashed border-secondary/20"></div>
+<!-- Chart Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between">
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+</div>
+<!-- Temperature Line (SVG) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Area Gradient Fill -->
+<path class="fill-primary/5 dark:fill-primary/10" d="M 0,80 Q 15,75 25,85 Q 35,95 50,55 Q 65,15 75,25 Q 85,35 100,50 L 100,100 L 0,100 Z"></path>
+<!-- The Line -->
+<path d="M 0,80 Q 15,75 25,85 Q 35,95 50,55 Q 65,15 75,25 Q 85,35 100,50" fill="none" stroke="#4c99e6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Highlight Points -->
+<!-- MIN at 2:00 AM approx -->
+<circle cx="25" cy="85" fill="#4c99e6" r="1.5" vector-effect="non-scaling-stroke"></circle>
+<!-- MAX at 6:00 PM approx -->
+<circle cx="75" cy="25" fill="#4c99e6" r="1.5" vector-effect="non-scaling-stroke"></circle>
+<!-- Tooltip Point (12:00 PM) -->
+<circle cx="50" cy="55" fill="#fff" r="2.5" stroke="#4c99e6" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
+</svg>
+<!-- Tooltip & Labels -->
+<div class="absolute left-[50%] top-[55%] -translate-x-1/2 -translate-y-full mb-3">
+<div class="bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-xl whitespace-nowrap">
+                                    12:00 PM: 21.2°C
+                                    <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
+</div>
+</div>
+<!-- Max Label -->
+<div class="absolute left-[75%] top-[25%] -translate-y-full mb-1">
+<span class="text-[10px] font-bold text-accent-amber bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-accent-amber/20 shadow-sm">MAX 22.1°C</span>
+</div>
+<!-- Min Label -->
+<div class="absolute left-[25%] top-[85%] translate-y-2">
+<span class="text-[10px] font-bold text-primary bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-primary/20 shadow-sm">MIN 18.5°C</span>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="ml-12 mt-4 flex justify-between text-[10px] text-slate-400">
+<span>00:00</span>
+<span>04:00</span>
+<span>08:00</span>
+<span class="text-primary font-bold">12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+<span>23:59</span>
+</div>
+</div>
+</div>
+<!-- Bottom Status Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-slate-400 text-lg">nights_stay</span>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Night Average</p>
+</div>
+<p class="text-xl font-bold">20.5°C</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-secondary text-lg">humidity_percentage</span>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Humidity Status</p>
+</div>
+<div class="flex items-center gap-2">
+<p class="text-xl font-bold">45%</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold">Ideal</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-emerald-500 text-lg">router</span>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Device Status</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<p class="text-xl font-bold">Online</p>
+</div>
+</div>
+</div>
+<!-- Footer Reassurance -->
+<div class="flex items-center justify-center gap-4 text-slate-400 py-4">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<p class="text-sm italic text-center">Precise climate control for optimal rest. Monitored 24/7.</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>

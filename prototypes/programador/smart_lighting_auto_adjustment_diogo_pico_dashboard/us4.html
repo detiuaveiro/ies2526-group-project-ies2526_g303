@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "secondary": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #4c99e6;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 4px rgba(0,0,0,0.1);
+        }
+        .auto-slider::-webkit-slider-thumb {
+            background: #cbd5e1 !important;
+            cursor: not-allowed !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-64 flex-col bg-white dark:bg-slate-900 border-r border-primary/10 hidden md:flex">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">home_work</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">SmartHome</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Home Office</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined active-icon">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="text-sm font-medium">Sensors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span class="text-sm font-medium">Cameras</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm font-medium">Event History</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-4">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-4">
+<p class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Network Load</p>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/5"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-2">40% capacity in use</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold">Home Office - Productivity</h2>
+<p class="text-xs text-slate-500">Managing your workspace environment</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Date Selector -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+<button class="px-4 py-1.5 text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm rounded-lg text-primary">Live</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700">Analytics</button>
+</div>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-6">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Diogo Pico</p>
+<p class="text-[10px] text-slate-500">Senior Developer</p>
+</div>
+<img alt="Diogo Pico" class="size-10 rounded-full border-2 border-primary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB31Gx8jjJL6YHsJwHqqJdGTlQzECorKNBtMZLP2ORPF_YBtecfQ6SYiZa6F-f-GpZDjd4-iqa6wGhB6Zw5VqSRCHGDLo5kkJX6yPVs6NzLjBtMkl3OzHZINg7yfb5JNkdflI2vh5P5rmzjzP1P6_JYuiw6UIooWL5JA9xmh9lN5f_tnGe3BVdOy9c1RSo2s4KQaiDaT-h0zXYEWXPtYJA9VaC-KW21h2rrPiUc1feS9cn6CAIoS_ZA8SGTH19UOhApzSPahqMF55o"/>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-5xl mx-auto w-full space-y-8">
+<!-- Meeting Status Banner -->
+<div class="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+</span>
+<p class="text-sm font-bold text-red-700 dark:text-red-400 uppercase tracking-wide">Meeting Status: ACTIVE</p>
+</div>
+<div class="text-xs text-red-600 dark:text-red-500 font-medium">Do Not Disturb Active</div>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">speed</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Current Bandwidth</p>
+<p class="text-2xl font-bold">850 Mbps</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="size-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl">wifi_tethering</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Network Health</p>
+<p class="text-2xl font-bold text-secondary">Excellent</p>
+</div>
+</div>
+</div>
+<!-- Control Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Heating System -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined text-2xl active-icon">thermostat</span>
+</div>
+<div>
+<h3 class="font-bold">Heating System</h3>
+<p class="text-xs text-slate-400 uppercase font-semibold">Status: <span class="text-orange-500">ON</span></p>
+</div>
+</div>
+<div class="text-2xl font-bold">22.5°C</div>
+</div>
+<button class="w-full py-4 bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-700 dark:text-slate-300 hover:text-red-600 transition-colors rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">power_settings_new</span>
+                        Toggle Off
+                    </button>
+</div>
+<!-- Smart Lighting (Updated) -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-accent-amber/10 flex items-center justify-center text-accent-amber">
+<span class="material-symbols-outlined text-2xl active-icon">light_mode</span>
+</div>
+<div>
+<h3 class="font-bold">Smart Lighting</h3>
+<p class="text-xs text-slate-400 uppercase font-semibold">Status: <span class="text-accent-amber">ON</span></p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="text-2xl font-bold">85%</div>
+<div class="flex items-center gap-1.5 text-secondary text-[10px] font-bold uppercase mt-1">
+<span class="material-symbols-outlined text-xs">light_mode</span>
+<span>Auto-Adjusting</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center px-1">
+<span class="text-[10px] text-slate-400 font-bold uppercase">Brightness</span>
+<div class="flex items-center gap-1 text-[10px] bg-slate-50 dark:bg-slate-800/50 px-2 py-0.5 rounded-full border border-slate-100 dark:border-slate-700 text-slate-500">
+<span class="material-symbols-outlined text-[12px]">wb_sunny</span>
+<span>Auto-Adjusting to Natural Light</span>
+</div>
+</div>
+<div class="relative group">
+<input class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-not-allowed auto-slider" disabled="" max="100" min="0" type="range" value="85"/>
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                Managed by Auto-Adjustment
+                            </div>
+</div>
+</div>
+<button class="w-full py-4 bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-900/20 text-slate-700 dark:text-slate-300 hover:text-red-600 transition-colors rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">power_settings_new</span>
+                        Toggle Off
+                    </button>
+</div>
+</div>
+<!-- Footer Reassurance -->
+<div class="flex items-center justify-center gap-4 text-slate-400">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<p class="text-sm italic">Workspace optimized for peak performance and focus.</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>

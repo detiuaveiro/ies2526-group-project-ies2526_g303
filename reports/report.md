@@ -75,20 +75,20 @@ Responsável pela instalação, manutenção técnica e integridade do pipeline 
 
 ## A.3. Cenários Suportados (User Stories)
 
-| ID   | User Story | Explicação
-|------|------------| -----------
-**US1** | Monitorização de Saúde do Sistema | Como **admin**, quero monitorizar a latência e os erros das rotas da API REST através de logs centralizados, para detetar falhas de comunicação entre o backend e o frontend antes que o utilizador note problemas. |
-| **US2** | Atuação Remota | Como **programador em teletrabalho**, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões. |
-| **US3** | Alerta de Qualidade do Ar | Como **programador em teletrabalho**, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório e quando devo regular a temperatura. |
-| **US4** | Automação de Luminosidade | Como **programador em teletrabalho**, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia. |
-| **US5** | Deteção de Intrusão/Movimento | Como **mãe**, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança. |
-| **US6** | Histórico Térmico | Como **mãe**, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite. |
-| **US7** | Verificação de Conetividade | Como **admin**, quero consultar um dashboard de estado técnico que indique se todos os sensores virtuais estão a publicar dados com sucesso na Message Queue, para garantir que o pipeline de dados está operacional. |
-| **US8** | Log de Atividade | Como **mãe**, quero aceder a uma lista de eventos (timestamps) de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto. |
-| **US9** | Monitorização de Consumo | Como **reformado**, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado. |
-| **US10** | Iluminação de Segurança | Como **reformado**, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro. |
-| **US11** | Notificação de Gastos | Como **reformado**, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz. |
-| **US12** | Exportação de Dados | Como **reformado**, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família. |
+| ID       | User Story                        | Explicação                                                                                                                                                                                                            |
+| -------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **US2**  | Verificação de Conetividade       | Como **admin**, quero consultar um dashboard de estado técnico que indique se todos os sensores virtuais estão a publicar dados com sucesso na Message Queue, para garantir que o pipeline de dados está operacional. |
+| **US1**  | Monitorização de Saúde do Sistema | Como **admin**, quero monitorizar a latência e os erros das rotas da API REST através de logs centralizados, para detetar falhas de comunicação entre o backend e o frontend antes que o utilizador note problemas.   |
+| **US9**  | Monitorização de Consumo          | Como **reformado**, quero visualizar o consumo de energia atual de cada divisão da casa para identificar aparelhos que estejam a gastar demasiado.                                                                    |
+| **US7**  | Deteção de Intrusão/Movimento     | Como **mãe**, quero receber um alerta imediato no portal se for detetado movimento no quarto do bebé durante o seu período de sono para garantir a sua segurança.                                                     |
+| **US5**  | Atuação Remota                    | Como **programador em teletrabalho**, quero poder ligar ou desligar o aquecimento e as luzes através do dashboard para não interromper as minhas reuniões.                                                            |
+| **US10** | Iluminação de Segurança           | Como **reformado**, quero que as luzes do corredor se liguem automaticamente se for detetado movimento à noite para evitar quedas no escuro.                                                                          |
+| **US6**  | Histórico Térmico                 | Como **mãe**, quero consultar gráficos de temperatura das últimas 24 horas para verificar se o quarto se manteve confortável durante a noite.                                                                         |
+| **US8**  | Log de Atividade                  | Como **mãe**, quero aceder a uma lista de eventos (timestamps) de quando as luzes foram ligadas ou o movimento detetado para auditar a rotina do quarto.                                                              |
+| **US11** | Notificação de Gastos             | Como **reformado**, quero que o dashboard mostre um alerta se o consumo de energia ultrapassar um limite diário definido por mim para não ter surpresas na conta da luz.                                              |
+| **US3**  | Alerta de Qualidade do Ar         | Como **programador em teletrabalho**, quero receber uma notificação visual se a humidade sair dos limites ideais para saber quando devo ventilar o escritório e quando devo regular a temperatura.                    |
+| **US4**  | Automação de Luminosidade         | Como **programador em teletrabalho**, quero que a intensidade das luzes inteligentes se ajuste automaticamente com base no sensor de luz natural para reduzir a fadiga ocular durante o dia.                          |
+| **US12** | Exportação de Dados               | Como **reformado**, quero exportar um relatório semanal simples com os gastos energéticos para poder partilhar e discutir a poupança com a minha família.                                                             |
 
 ---
 
