@@ -11,6 +11,7 @@
 - Conclusão dos protótipos
 - Redação do report
 - Criação do ficheiro de apresentacão
+- Estabelecimento da arquitetura
 
 ### Tarefas
 | Tarefa | Responsável | Estado |
@@ -19,3 +20,4 @@
 | Redação do report| Diogo Ruivo | Concluído |
 | Redação da ata de reunião 4| Diogo Ruivo | Concluído |
 | Criacão do ficheiro de apresentacão | Rodrigo Fonseca | Concluído |
+| Estabelecimento da arquitetura | Gabriel Riquito | Concluído |
