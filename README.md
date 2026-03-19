@@ -32,30 +32,36 @@ O sistema será composto por um simulador de sensores, um backend com API REST, 
 
 O sistema segue uma arquitetura distribuída em camadas:
 
-### 1. Camada de Simulação (Simulator)
+### 1. Camada de Simulação (IoT Simulator)
 
-* Geração de dados de sensores virtuais (temperatura, humidade, luz, movimento e consumo energético);
-* Envio dos dados para o backend através de pedidos REST (POST).
+* Sensores virtuais: gera dados de Temperatura, Humidade, Luminosidade, Movimento e Consumo.
+* Atuadores virtuais: recebe comandos para alterar estado de dispositivos (Luzes, Aquecimento).
+* Comunicação: envia telemetria para o **Message Broker** e recebe comandos via **API REST** ou **WebSockets**.
 
-### 2. Camada de Backend + API REST (Backend)
+### 2. Message Broker (Event Bus)
 
-* Receção de dados do simulador;
-* Processamento de regras de negócio;
-* Geração de alertas e eventos;
-* Exposição de endpoints REST para o frontend;
-* Envio de comandos para atuadores virtuais (luzes e aquecimento).
+* Núcleo de integração assíncrona do sistema (ex: RabbitMQ/MQTT).
+* Desacopla Simulador e Backend, permitindo envio de dados sem dependência direta.
+* Facilita distribuição de eventos e monitorização do pipeline.
 
-### 3. Camada de Dados (Base de Dados)
+### 3. Camada de Backend + API REST
 
-* Persistência de dados numa base de dados relacional;
-* Armazenamento de utilizadores, sensores, medições, eventos e alertas.
+* Consome dados do **Message Broker** e valida integridade.
+* Processa regras de negócio, automações e gera alertas.
+* Expõe endpoints **REST** e envia notificações em tempo real via **WebSockets**.
+* Encaminha comandos para os atuadores virtuais.
 
-### 4. Camada de Apresentação (Frontend)
+### 4. Camada de Persistência (Base de Dados)
 
-* Dashboard web;
-* Visualização em tempo real dos dados;
-* Gráficos históricos;
-* Interface de controlo remoto e automação.
+* Armazena histórico de medições, alertas, usuários e logs de atuação.
+* Garante integridade e auditabilidade da informação.
+
+### 5. Camada de Apresentação (Frontend)
+
+* Dashboard web **SPA** (React/TypeScript).
+* Visualiza dados em tempo real, gráficos históricos e alertas.
+* Permite controlo remoto de dispositivos e configuração de limites.
+* Consola de administrador para monitorização técnica.
 
 ---
 
