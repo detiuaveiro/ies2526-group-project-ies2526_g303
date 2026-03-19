@@ -4,7 +4,7 @@
 
 ## **US2 – Verificação de Conetividade (Admin – Dashboard de estado técnico)**
 
-Protótipo: ![Abrir protótipo](./us/us2.html)
+Protótipo: ![Abrir protótipo](./us/us2.png)
 
 ```mermaid
 graph TD
@@ -21,7 +21,7 @@ graph TD
 
 ## **US9 – Monitorização de Consumo (Reformado – Consumo de energia por divisão)**
 
-Protótipo: ![Abrir protótipo](./us/us9.html)
+Protótipo: ![Abrir protótipo](./us/us9.png)
 
 ```mermaid
 graph TD
@@ -37,7 +37,7 @@ graph TD
 
 ## **US7 – Deteção de Intrusão/Movimento (Mãe – Alerta no quarto do bebé)**
 
-Protótipo: ![Abrir protótipo](./us/us7.html)
+Protótipo: ![Abrir protótipo](./us/us7.png)
 
 ```mermaid
 graph TD
@@ -54,7 +54,7 @@ graph TD
 
 ## **US5 – Atuação Remota (Programador – Controlo de luzes e aquecimento)**
 
-Protótipo: ![Abrir protótipo](./us/us5.html)
+Protótipo: ![Abrir protótipo](./us/us5.png)
 
 ```mermaid
 graph TD
