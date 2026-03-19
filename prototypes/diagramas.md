@@ -4,6 +4,9 @@
 
 # Admin / Técnico de Sistemas
 
+**Objetivo:** Manter integridade e saúde do sistema  
+**Principais User Cases:** Monitorização da performance da API e dos sensores, validação da conectividade, análise de logs, controlo e configuração inicial de hardware
+
 ## User Stories
 - **US2** – Verificação de Conetividade  
 - **US1** – Monitorização de Saúde do Sistema  
@@ -26,6 +29,9 @@ graph TD
 ---
 
 # Reformado
+
+**Objetivo:** Gestão eficiente de energia e segurança
+**Principais User Cases:** Monitorizar consumo por divisão, alertas de gastos excessivos, automação de iluminação noturna, exportação de relatórios de consumo
 
 ## User Stories
 
@@ -52,6 +58,9 @@ graph TD
 
 # Mãe
 
+**Objetivo:** Segurança e bem-estar do bebé
+**Principais User Cases:** Receber alertas de movimento no quarto, consultar histórico térmico, auditar rotina de luzes e sensores
+
 ## User Stories
 
 * **US7** – Deteção de Intrusão/Movimento
@@ -76,6 +85,9 @@ graph TD
 ---
 
 # Programador em Teletrabalho
+
+**Objetivo:** Manter conforto e produtividade em casa
+**Principais User Cases:** Atuar remotamente em aquecimento e luzes, receber alertas de qualidade do ar, ajustar luminosidade automaticamente
 
 ## User Stories
 
