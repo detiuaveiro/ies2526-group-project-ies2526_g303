@@ -2,7 +2,13 @@
 
 ---
 
-## **US2 – Verificação de Conetividade (Admin – Dashboard de estado técnico)**
+# Admin / Técnico de Sistemas
+
+## User Stories
+- **US2** – Verificação de Conetividade  
+- **US1** – Monitorização de Saúde do Sistema  
+
+### Destaque: US2 – Verificação de Conetividade
 
 Protótipo: ![Abrir protótipo](./us/us2.png)
 
@@ -10,16 +16,25 @@ Protótipo: ![Abrir protótipo](./us/us2.png)
 graph TD
     Admin["Admin"] -->|Visualiza estado dos sensores| Frontend["Dashboard Web"]
     Frontend -->|Consulta status| Backend["Backend / API REST"]
-    Backend -->|Verifica dados publicados| MQ["Message Queue"]
+    Backend -->|Verifica dados publicados| MQ["Message Broker"]
     Backend --> DB["Base de Dados"]
     MQ -->|Recebe dados de| SIM["Simuladores de Sensores Virtuais"]
 ```
 
-**Explicação:** O admin vê o dashboard que recolhe informações da Message Queue e da base de dados para mostrar se todos os sensores estão a funcionar.
+**Explicação:** O admin monitoriza o estado do sistema garantindo que todos os sensores estão a publicar corretamente.
 
 ---
 
-## **US9 – Monitorização de Consumo (Reformado – Consumo de energia por divisão)**
+# Reformado
+
+## User Stories
+
+* **US9** – Monitorização de Consumo
+* **US10** – Iluminação de Segurança
+* **US11** – Notificação de Gastos
+* **US12** – Exportação de Dados
+
+### Destaque: US9 – Monitorização de Consumo
 
 Protótipo: ![Abrir protótipo](./us/us9.png)
 
@@ -27,48 +42,65 @@ Protótipo: ![Abrir protótipo](./us/us9.png)
 graph TD
     UserR["Reformado"] -->|Visualiza consumo| FrontendR["Dashboard Web"]
     FrontendR -->|Consulta dados| BackendR["Backend / API REST"]
-    BackendR --> DBR["Base de Dados de Energia"]
-    BackendR -->|Consulta sensores de energia| SensorsR["Sensores de Energia por Divisão"]
+    BackendR --> DBR["Base de Dados"]
+    BackendR -->|Consulta sensores| SensorsR["Sensores de Energia"]
 ```
 
-**Explicação:** O reformado quer ver consumo em cada divisão; os dados vêm dos sensores de energia e da base de dados.
+**Explicação:** O utilizador acompanha o consumo energético por divisão para reduzir gastos.
 
 ---
 
-## **US7 – Deteção de Intrusão/Movimento (Mãe – Alerta no quarto do bebé)**
+# Mãe
+
+## User Stories
+
+* **US7** – Deteção de Intrusão/Movimento
+* **US6** – Histórico Térmico
+* **US8** – Log de Atividade
+
+### Destaque: US7 – Deteção de Intrusão/Movimento
 
 Protótipo: ![Abrir protótipo](./us/us7.png)
 
 ```mermaid
 graph TD
-    Mom["Mãe"] -->|Recebe alerta| FrontendM["Portal Web / App"]
-    FrontendM -->|Verifica eventos| BackendM["Backend / API REST"]
-    BackendM -->|Processa movimento| SensorsM["Sensor de Movimento"]
-    BackendM --> DBM["Base de Dados de Eventos"]
-    BackendM -->|Envia notificação| Mom
+    Mom["Mãe"] -->|Recebe alerta| FrontendM["Dashboard Web"]
+    FrontendM -->|Consulta eventos| BackendM["Backend / API REST"]
+    BackendM -->|Processa dados| SensorsM["Sensor de Movimento"]
+    BackendM --> DBM["Base de Dados"]
+    BackendM -->|Notificação em tempo real| Mom
 ```
 
-**Explicação:** Quando o sensor deteta movimento, o backend cria um evento, armazena na base de dados e envia alerta imediato ao portal.
+**Explicação:** O sistema gera alertas imediatos quando é detetado movimento, garantindo segurança.
 
 ---
 
-## **US5 – Atuação Remota (Programador – Controlo de luzes e aquecimento)**
+# Programador em Teletrabalho
+
+## User Stories
+
+* **US5** – Atuação Remota
+* **US3** – Alerta de Qualidade do Ar
+* **US4** – Automação de Luminosidade
+
+### Destaque: US5 – Atuação Remota
 
 Protótipo: ![Abrir protótipo](./us/us5.png)
 
 ```mermaid
 graph TD
-    Dev["Programador"] -->|Liga/desliga| FrontendD["Dashboard Web"]
-    FrontendD -->|Envia comando| BackendD["Backend / API REST"]
-    BackendD -->|Atua sobre| ActuatorsD["Luzes / Aquecimento"]
-    BackendD --> DBD["Base de Dados de Comandos"]
+    Dev["Programador"] -->|Envia comando| FrontendD["Dashboard Web"]
+    FrontendD -->|Pedido REST| BackendD["Backend / API REST"]
+    BackendD -->|Envia comando| MQ["Message Broker"]
+    MQ --> ActuatorsD["Atuadores (Luzes / Aquecimento)"]
+    BackendD --> DBD["Base de Dados"]
 ```
 
-**Explicação:** O programador envia comandos pelo dashboard; o backend processa e controla os atuadores virtuais, registando a ação na base de dados.
+**Explicação:** O utilizador controla remotamente dispositivos sem interromper o trabalho.
 
 ---
 
-## Arquitetura Geral do Sistema
+# Arquitetura Geral do Sistema
 
 ```mermaid
 graph TD
@@ -109,6 +141,6 @@ graph TD
 
 ---
 
-## Todos os Protótipos das User Stories
+# Todos os Protótipos
 
 ![Todos os protótipos](./prototipos.png)
