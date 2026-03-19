@@ -106,3 +106,9 @@ graph TD
     BL --> MQ
     MQ --> A
 ```
+
+---
+
+## Todos os Protótipos das User Stories
+
+![Todos os protótipos](./prototipos.png)
