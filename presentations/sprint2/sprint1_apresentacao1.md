@@ -90,14 +90,28 @@ graph TD
 
 ## 4. Protótipos em Figma
 
-Os protótipos foram criados para **representar as principais funcionalidades** e fluxos de utilizador do sistema, com destaque para:
+Os protótipos foram criados para **representar as principais funcionalidades** e fluxos de utilizador do sistema. Cada protótipo reflete as necessidades específicas das nossas **personas**:
 
-* Dashboard técnico do Admin;
-* Controle remoto de aquecimento e luzes;
-* Visualização de consumo energético e alertas de movimento;
-* Histórico de temperatura e atividade.
+### Personas e Principais User Cases
 
-**Nota:** Os diagramas detalhados e a ligação entre os protótipos e a arquitetura estão documentados em **diagrama.md**, incluindo links para cada protótipo HTML.
+| Persona                         | Objetivos / Desejos                     | Principais User Cases                                                                                                                        |
+| ------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Programador em Teletrabalho** | Manter conforto e produtividade em casa | Atuar remotamente em aquecimento e luzes, receber alertas de qualidade do ar, ajustar luminosidade para reduzir fadiga ocular                |
+| **Mãe**                         | Segurança e bem-estar do bebé           | Receber alertas de movimento no quarto, consultar histórico térmico, auditar rotina de luzes e sensores                                      |
+| **Reformado**                   | Gestão eficiente de energia e segurança | Monitorizar consumo por divisão, alertas de gastos excessivos, automação de iluminação noturna, exportação de relatórios de consumo          |
+| **Admin / Técnico de Sistemas** | Manter integridade e saúde do sistema   | Monitorização da performance da API e dos sensores, validação da conectividade, análise de logs, controle e configuração inicial de hardware |
+
+### Funcionalidades refletidas nos protótipos
+
+* **Dashboard Técnico do Admin:** Estado da infraestrutura, logs e alertas (US1, US2).
+* **Controle Remoto:** Atuação em luzes e aquecimento (US5).
+* **Visualização de Consumo:** Gráficos por divisão e alertas de gasto (US9, US11, US12).
+* **Alertas de Movimento e Histórico:** Segurança e conforto para a Mãe e Programador (US6, US7, US3, US4).
+
+> **Nota:** Os protótipos em png e em HTML encontram-se em `prototypes`.
+> Alguns diagramas detalhados, user stories associadas e links para os protótipos estão documentados em **diagrama.md**, mostrando a ligação entre arquitetura, personas e casos de uso.
+
+* [**Protótipos**] (../../prototypes/diagrama.md)
 
 ---
 
