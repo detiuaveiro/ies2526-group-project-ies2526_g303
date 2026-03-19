@@ -4,7 +4,7 @@
 
 ## 1. Introdução ao Projeto
 
-O **Smart Home Dashboard** é uma plataforma web centrada no utilizador, destinada a apoiar a gestão do ambiente doméstico inteligente.
+O **Smart Home Dashboard** é uma plataforma web intuitiva e centrada no utilizador, que facilita a gestão da sua casa inteligente, oferecendo conforto, segurança e maior tranquilidade no dia a dia.
 
 O objetivo principal do projeto é permitir ao utilizador:
 
@@ -24,7 +24,7 @@ Durante esta sprint, realizámos várias atividades chave:
 
 ### Principais Conquistas
 
-* **Protótipos concluídos:** Criados e refinados em **Figma**, com fluxo de navegação simples e interface funcional.
+* **Protótipos concluídos:** Criados e refinados em **Stitch**, com fluxo de navegação simples e interface funcional.
 * **Arquitetura finalizada:** Definida de forma distribuída, contemplando simuladores, backend, frontend e base de dados.
 * **Report.md atualizado:** Documenta arquitetura, user stories, diagramas e decisões da equipa.
 * **Diagramas de User Stories:** Documentam interações entre utilizadores, frontend, backend e sensores.
