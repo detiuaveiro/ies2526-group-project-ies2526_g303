@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartHome OS - Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .status-pulse {
+            position: relative;
+            display: inline-flex;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+        }
+        .status-pulse::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background-color: #10b981;
+            opacity: 0.75;
+            scale: 2;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined text-3xl">hub</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">SmartHome OS <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-500">ADMIN</span></h2>
+</div><nav class="flex items-center gap-2 ml-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+<span class="text-xs font-bold uppercase tracking-wider">Infrastructure Status</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-sm">monitoring</span>
+<span class="text-xs font-bold uppercase tracking-wider">API Performance</span>
+</button>
+</nav>
+<label class="flex flex-col min-w-40 !h-9 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800">
+<div class="text-slate-500 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 text-sm placeholder:text-slate-500" placeholder="Search node or sensor..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-800 pl-6">
+<div class="flex flex-col items-end">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-none">Alex Rivera</p>
+<p class="text-[10px] font-mono text-slate-500 leading-tight">System Admin</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-slate-200 dark:border-slate-700" data-alt="Profile picture of a male administrator wearing glasses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr4btDj3PXHBlxAyHKXFOrcvYTOexU91aupo9V639k5Vuo2eHC_6KiKEJ2XpqntZM9-dHTdb_pMXK9wj3fq0GdVMByYOSRG4mzr0AIkkM-MRjDJ0t4aSlCp8w6UNHwyNbbGoHhl0mmpACsmPQxC3fgCWLrXdvNuU2XlngjXqOr8enb93MI75ldbhhEu_y58c5NshGtFBpy1m35q2do_Wc7LubjbHJEsIx5nOQ9Wr6Yxcd8TefLbgQvQFvENazx2J07BibByAO1ZoA");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col p-4 gap-6 shrink-0">
+<div class="flex flex-col">
+<h3 class="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-3 px-3">System Navigation</h3>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium text-sm" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+                            Dashboard
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm" href="#">
+<span class="material-symbols-outlined text-xl">sensors</span>
+                            Sensors
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm" href="#">
+<span class="material-symbols-outlined text-xl">schema</span>
+                            Pipelines
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm" href="#">
+<span class="material-symbols-outlined text-xl">database</span>
+                            Storage
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm" href="#">
+<span class="material-symbols-outlined text-xl">description</span>
+                            Logs
+                        </a>
+</nav>
+</div>
+<div class="mt-auto border-t border-slate-200 dark:border-slate-800 pt-4">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="status-pulse"></div>
+<div class="flex flex-col">
+<p class="text-[11px] font-mono text-slate-500">System Uptime</p>
+<p class="text-xs font-mono text-slate-900 dark:text-slate-100">14d 02h 45m 12s</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-background-dark p-6">
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
+<!-- 1. Pipeline Monitor -->
+<section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">alt_route</span>
+                                Data Pipeline Monitor
+                            </h3>
+<div class="flex gap-4 text-[10px] font-mono text-slate-400">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> ACTIVE</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span> IDLE</span>
+</div>
+</div>
+<div class="flex items-center justify-between px-12 relative">
+<!-- Flow lines -->
+<div class="absolute top-1/2 left-0 right-0 h-0.5 bg-slate-200 dark:bg-slate-800 -translate-y-1/2 z-0 mx-24"></div>
+<!-- Node 1 -->
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-3xl">precision_manufacturing</span>
+<div class="absolute -top-1 -right-1 status-pulse"></div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold">Simulator</p>
+<p class="text-[10px] font-mono text-slate-500">v1.2.0-SIM</p>
+</div>
+</div>
+<!-- Flow Arrow 1 -->
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-2xl animate-pulse">fast_forward</span>
+<p class="text-[9px] font-mono text-primary">0.5ms pulse</p>
+</div>
+<!-- Node 2 -->
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-3xl">swap_calls</span>
+<div class="absolute -top-1 -right-1 status-pulse"></div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold">Message Broker</p>
+<p class="text-[10px] font-mono text-slate-500">MQTT Cluster</p>
+</div>
+</div>
+<!-- Flow Arrow 2 -->
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary text-2xl animate-pulse">fast_forward</span>
+<p class="text-[9px] font-mono text-primary">450 msg/s</p>
+</div>
+<!-- Node 3 -->
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-16 h-16 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-3xl">storage</span>
+<div class="absolute -top-1 -right-1 status-pulse"></div>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold">Backend</p>
+<p class="text-[10px] font-mono text-slate-500">Core Node.js</p>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+<!-- 2. Virtual Sensor Grid (Middle/Left) -->
+<div class="lg:col-span-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+                                    Virtual Sensor Grid
+                                </h3>
+<button class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-600 hover:bg-slate-200">REFRESH</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-[10px] uppercase text-slate-400 font-mono">
+<tr>
+<th class="px-4 py-3 border-b border-slate-200 dark:border-slate-800">Sensor ID</th>
+<th class="px-4 py-3 border-b border-slate-200 dark:border-slate-800">Type</th>
+<th class="px-4 py-3 border-b border-slate-200 dark:border-slate-800">Queue Status</th>
+<th class="px-4 py-3 border-b border-slate-200 dark:border-slate-800">Throughput</th>
+<th class="px-4 py-3 border-b border-slate-200 dark:border-slate-800">Last Payload</th>
+</tr>
+</thead>
+<tbody class="text-xs">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-4 py-3 font-mono text-slate-500 border-b border-slate-100 dark:border-slate-800/50">LVR-TEMP-001</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">Temperature</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">PUBLISHING</span>
+</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50 font-mono">1.2 msg/s</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<code class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-600">{"val":21.2}</code>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-4 py-3 font-mono text-slate-500 border-b border-slate-100 dark:border-slate-800/50">KIT-HUM-042</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">Humidity</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">PUBLISHING</span>
+</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50 font-mono">0.8 msg/s</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<code class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-600">{"rh":45.5}</code>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-4 py-3 font-mono text-slate-500 border-b border-slate-100 dark:border-slate-800/50">ENT-CO2-109</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">CO2 Sensor</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400">TIMEOUT</span>
+</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50 font-mono text-rose-500">0.0 msg/s</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<code class="bg-rose-50 dark:bg-rose-900/10 px-2 py-1 rounded text-[10px] font-mono text-rose-400">{"err":408}</code>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-4 py-3 font-mono text-slate-500 border-b border-slate-100 dark:border-slate-800/50">OUT-LUM-221</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">Luminosity</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">PUBLISHING</span>
+</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50 font-mono">2.1 msg/s</td>
+<td class="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50">
+<code class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-[10px] font-mono text-slate-600">{"lux":450}</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- 3. Health Checks (Right) -->
+<div class="flex flex-col gap-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 px-1">
+                                Modules Status
+                            </h3>
+<!-- Card 1 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-400">deployed_code</span>
+<span class="text-xs font-bold">Simulator</span>
+</div>
+<span class="text-[10px] font-mono text-emerald-500">RUNNING</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[82%]"></div>
+</div>
+<div class="mt-2 flex justify-between text-[9px] font-mono text-slate-400">
+<span>CPU: 12%</span>
+<span>MEM: 240MB</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-400">settings_input_component</span>
+<span class="text-xs font-bold">Broker</span>
+</div>
+<span class="text-[10px] font-mono text-emerald-500">RUNNING</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[45%]"></div>
+</div>
+<div class="mt-2 flex justify-between text-[9px] font-mono text-slate-400">
+<span>CPU: 4%</span>
+<span>MEM: 120MB</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-400">terminal</span>
+<span class="text-xs font-bold">Backend API</span>
+</div>
+<span class="text-[10px] font-mono text-emerald-500">RUNNING</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[94%]"></div>
+</div>
+<div class="mt-2 flex justify-between text-[9px] font-mono text-slate-400">
+<span>CPU: 38%</span>
+<span>MEM: 1.2GB</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-3 border-l-4 border-l-primary">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-400">database</span>
+<span class="text-xs font-bold">PostgreSQL</span>
+</div>
+<span class="text-[10px] font-mono text-emerald-500">RUNNING</span>
+</div>
+<div class="mt-1 text-[10px] font-mono text-slate-500">
+                                    Active Conn: 12/100<br/>
+                                    Write Latency: 0.12ms
+                                </div>
+</div>
+</div>
+</div>
+<!-- Footer / System Logs -->
+<section class="bg-slate-900 rounded-lg p-4 font-mono text-[11px] text-slate-400 border border-slate-800">
+<div class="flex items-center gap-3 mb-2 border-b border-slate-800 pb-2">
+<span class="text-primary uppercase font-bold">Real-time Terminal Logs</span>
+<span class="text-slate-600">|</span>
+<span class="text-slate-500">Listening on :8080</span>
+</div>
+<div class="space-y-1">
+<p><span class="text-slate-600">[2023-11-24 14:22:01]</span> <span class="text-emerald-500">INFO</span> Sensor LVR-TEMP-001 pushed packet 0x33A1 to MQTT</p>
+<p><span class="text-slate-600">[2023-11-24 14:22:02]</span> <span class="text-emerald-500">INFO</span> Backend consumer acknowledge packet 0x33A1</p>
+<p><span class="text-slate-600">[2023-11-24 14:22:03]</span> <span class="text-amber-500">WARN</span> Packet drop threshold near 2% on node BROKER-1</p>
+<p><span class="text-slate-600">[2023-11-24 14:22:05]</span> <span class="text-emerald-500">INFO</span> Simulator: Re-syncing clock with NTP server...</p>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body></html>
