@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     subgraph "Camada de Simulação"
         SIM["Simuladores      (Python)"]
@@ -33,3 +34,4 @@ graph TD
     API <--> BL
     BL --> MQ
     MQ --> A
+```

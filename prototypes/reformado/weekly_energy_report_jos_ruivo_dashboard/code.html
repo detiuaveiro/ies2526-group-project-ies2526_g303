@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartHome OS - Weekly Energy Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "secondary": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen">
+<div class="flex h-full">
+<!-- Sidebar (EXACT matching original layout) -->
+<aside class="w-64 flex-shrink-0 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 transition-all duration-300">
+<!-- Logo Section -->
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined active-icon">home_work</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">SmartHome</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">OS Dashboard</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto scrollbar-hide">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined active-icon text-[20px]">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<span class="text-sm font-semibold">Devices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-sm font-semibold">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="text-sm font-semibold">Energy History</span>
+</a>
+<div class="pt-6 pb-2">
+<div class="h-px bg-slate-100 dark:bg-slate-800 mx-4"></div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-semibold">Settings</span>
+</a>
+</nav>
+<!-- Bottom Status Card -->
+<div class="p-4 mt-auto">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-5">
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3">Grid Stability</p>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-4/5"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-3 font-medium">Optimal efficiency</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-[#f9fafb] dark:bg-background-dark overflow-y-auto">
+<!-- Header (EXACT matching original layout) -->
+<header class="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Weekly Energy Report</h2>
+<p class="text-xs text-slate-500 mt-0.5">Comprehensive savings and consumption insights</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Live/Analytics Toggle -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+<button class="px-5 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Live</button>
+<button class="px-5 py-1.5 text-xs font-bold bg-white dark:bg-slate-700 shadow-sm rounded-lg text-primary">History</button>
+</div>
+<!-- User Profile -->
+<div class="flex items-center gap-4 pl-6 border-l border-slate-100 dark:border-slate-800">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">José Ruivo</p>
+<p class="text-[11px] text-slate-500 font-medium">Home Owner</p>
+</div>
+<div class="size-11 rounded-full border-2 border-primary/20 p-0.5">
+<img alt="José Ruivo" class="size-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_SvszcAsE56rqKyhgw-BwAAYnaTB4laCWcOpor4TpvplgIhBevy2y-9d8gXim41Bka7G3_Qb_hIN04uooLrVREBeVdgHjcecVSCKJB6p9iJrD9gUQl0CQ3o978ThZAVi26Co8cpx4Z8xHA7MWwuqbbpI70t58jluf9njgvv4kB75cX4L9vteso2hKTFHcr2yfANekY_gvglAMpqw3HXlRNTA02GxMS27ON-qd67QOna55rlvx8osk4-zCcThW5m9JS9NCxzc959o"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+<!-- Date Range Selector -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-3 bg-white dark:bg-slate-900 px-6 py-3 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="material-symbols-outlined text-slate-400">calendar_month</span>
+<span class="text-sm font-bold">Oct 21, 2024 - Oct 27, 2024</span>
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg">download</span>
+                            Export Report
+                        </button>
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-full">
+<button class="px-4 py-2 text-[10px] font-bold bg-white dark:bg-slate-700 shadow-sm rounded-full text-slate-700 dark:text-slate-100 uppercase">PDF</button>
+<button class="px-4 py-2 text-[10px] font-bold text-slate-500 hover:text-slate-700 uppercase">CSV</button>
+</div>
+</div>
+</div>
+<!-- Summary Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Total Consumption</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold tracking-tight">84.5</span>
+<span class="text-lg font-medium text-slate-400">kWh</span>
+</div>
+<p class="text-xs text-secondary font-bold mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> 12% vs last week
+                        </p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Estimated Cost</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold tracking-tight">€28.40</span>
+</div>
+<p class="text-xs text-slate-400 font-medium mt-2">Based on current utility rates</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Efficiency Score</p>
+<div class="flex items-center justify-between">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold tracking-tight text-secondary">84</span>
+<span class="text-lg font-medium text-slate-400">/ 100</span>
+</div>
+<div class="size-12 rounded-full border-4 border-secondary/20 border-t-secondary rotate-45"></div>
+</div>
+<p class="text-xs text-secondary font-bold mt-2">Excellent performance</p>
+</div>
+</div>
+<!-- Consumption Chart -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold tracking-tight">Daily Consumption Pattern</h3>
+<div class="flex items-center gap-4 text-xs font-bold text-slate-400">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span> Consumption
+                            </div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-slate-200"></span> Avg.
+                            </div>
+</div>
+</div>
+<div class="flex items-end justify-between h-48 gap-4 px-2">
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[60%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-xl h-[80%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[75%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-xl h-[90%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[45%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-xl h-[60%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[90%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-danger rounded-t-xl h-[100%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[55%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-xl h-[70%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[40%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-xl h-[50%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-3">
+<div class="w-full bg-primary/20 rounded-t-xl h-[35%] relative group">
+<div class="absolute inset-x-0 bottom-0 bg-secondary rounded-t-xl h-[45%] group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase">Sun</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Savings Opportunities -->
+<div class="space-y-6">
+<h3 class="text-lg font-bold tracking-tight px-2">Top Savings Opportunities</h3>
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden divide-y divide-slate-50 dark:divide-slate-800/50">
+<div class="p-6 flex items-center gap-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="size-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined active-icon">eco</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Lower standby power</p>
+<p class="text-[11px] text-slate-500">Unplug kitchen gadgets during the night</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-secondary">-€2.10/mo</p>
+</div>
+</div>
+<div class="p-6 flex items-center gap-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined active-icon">bedtime</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Optimize night mode</p>
+<p class="text-[11px] text-slate-500">Lower AC setpoint by 1°C after 11 PM</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-secondary">-€4.50/mo</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Peak Usage Alerts -->
+<div class="space-y-6">
+<h3 class="text-lg font-bold tracking-tight px-2">Peak Usage Alerts</h3>
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden divide-y divide-slate-50 dark:divide-slate-800/50">
+<div class="p-6 flex items-center gap-5">
+<div class="size-12 rounded-2xl bg-danger/10 flex items-center justify-center text-danger">
+<span class="material-symbols-outlined active-icon">warning</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Thursday High Load</p>
+<p class="text-[11px] text-slate-500">EV Charger + Oven active simultaneously (6 PM)</p>
+</div>
+<div class="text-right">
+<span class="px-3 py-1 bg-danger/10 text-danger text-[10px] font-bold rounded-full">Critical</span>
+</div>
+</div>
+<div class="p-6 flex items-center gap-5">
+<div class="size-12 rounded-2xl bg-accent-amber/10 flex items-center justify-center text-accent-amber">
+<span class="material-symbols-outlined active-icon">bolt</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Tuesday Spike</p>
+<p class="text-[11px] text-slate-500">Water heater cycles increased due to guests</p>
+</div>
+<div class="text-right">
+<span class="px-3 py-1 bg-accent-amber/10 text-accent-amber text-[10px] font-bold rounded-full">Notable</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Affirmation -->
+<footer class="flex items-center justify-center gap-4 text-slate-400 py-8 border-t border-slate-100 dark:border-slate-800 mt-12">
+<span class="material-symbols-outlined text-secondary active-icon">verified_user</span>
+<p class="text-sm italic font-medium">Monitoring your home's energy footprint for a safer, greener future.</p>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

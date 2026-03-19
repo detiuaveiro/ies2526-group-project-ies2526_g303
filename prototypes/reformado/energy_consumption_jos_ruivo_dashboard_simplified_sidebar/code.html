@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartHome OS - Energy Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4c99e6",
+                        "secondary": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen">
+<div class="flex h-full">
+<!-- Sidebar (Matching SCREEN_25 Layout) -->
+<aside class="w-64 flex-shrink-0 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 transition-all duration-300">
+<!-- Logo Section -->
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined active-icon">home_work</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight">SmartHome</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">OS Dashboard</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto scrollbar-hide">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined active-icon text-[20px]">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<span class="text-sm font-semibold">Devices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-sm font-semibold">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span class="text-sm font-semibold">Energy History</span>
+</a>
+<div class="pt-6 pb-2">
+<div class="h-px bg-slate-100 dark:bg-slate-800 mx-4"></div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-semibold">Settings</span>
+</a>
+</nav>
+<!-- Bottom Status Card -->
+<div class="p-4 mt-auto">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-5">
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3">Grid Stability</p>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-4/5"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-3 font-medium">Optimal efficiency</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-[#f9fafb] dark:bg-background-dark overflow-y-auto">
+<!-- Header (Matching SCREEN_25 Layout with José Ruivo) -->
+<header class="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Energy Consumption - Home Overview</h2>
+<p class="text-xs text-slate-500 mt-0.5">Real-time power monitoring across your property</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Live/Analytics Toggle -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+<button class="px-5 py-1.5 text-xs font-bold bg-white dark:bg-slate-700 shadow-sm rounded-lg text-primary">Live</button>
+<button class="px-5 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Analytics</button>
+</div>
+<!-- User Profile in Header -->
+<div class="flex items-center gap-4 pl-6 border-l border-slate-100 dark:border-slate-800">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">José Ruivo</p>
+<p class="text-[11px] text-slate-500 font-medium">Home Owner</p>
+</div>
+<div class="size-11 rounded-full border-2 border-primary/20 p-0.5">
+<img alt="José Ruivo" class="size-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_SvszcAsE56rqKyhgw-BwAAYnaTB4laCWcOpor4TpvplgIhBevy2y-9d8gXim41Bka7G3_Qb_hIN04uooLrVREBeVdgHjcecVSCKJB6p9iJrD9gUQl0CQ3o978ThZAVi26Co8cpx4Z8xHA7MWwuqbbpI70t58jluf9njgvv4kB75cX4L9vteso2hKTFHcr2yfANekY_gvglAMpqw3HXlRNTA02GxMS27ON-qd67QOna55rlvx8osk4-zCcThW5m9JS9NCxzc959o"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+<!-- Summary Stats (Updated Styling) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-5">
+<div class="size-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Total Consumption Today</p>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-3xl font-bold tracking-tight">12.4</span>
+<span class="text-lg font-medium text-slate-400">kWh</span>
+</div>
+</div>
+</div>
+<div class="bg-red-50 dark:bg-red-900/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-red-500">trending_up</span>
+<span class="text-xs font-bold text-red-600">5% vs yesterday</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-5">
+<div class="size-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl active-icon">payments</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Estimated Monthly Cost</p>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-3xl font-bold tracking-tight">€45.20</span>
+</div>
+</div>
+</div>
+<div class="bg-secondary/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-secondary">trending_down</span>
+<span class="text-xs font-bold text-secondary">2% under budget</span>
+</div>
+</div>
+</div>
+<!-- Energy by Room Section -->
+<div class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-lg font-bold tracking-tight">Energy by Room</h3>
+<button class="text-sm font-bold text-primary flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+                            View details <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Living Room Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md">
+<div class="h-44 overflow-hidden">
+<img alt="Living Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAATH68zdac2p06bcHb1-7-P58Z1mZ-RCk2C5T8U0oa_W6MSEBgZsTTVGFXuNiE7wvn_V9tdJnxVP1sm8ooayP8-FjkG7HOCf964oHjb1m1dbAUoKPyDgsHvB1Tp-htr7BLgPhoemeBC2Fra1fnakflcYXkihuEYpAcgByDY3jo8JxIRAFm7SU3IByrmwjprvB_z3vBLcT5K3D7COIcUUBeGPMJN0doCX0dVCBVZItrnN5xGhglbJJZuxflkqDXBEssitnfQjTDmo0"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">chair</span>
+</div>
+<span class="font-bold text-lg">Living Room</span>
+</div>
+<span class="text-lg font-bold">1.2 kW</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<span>Consumption Level</span>
+<span class="text-amber-500">Medium</span>
+</div>
+<div class="h-2.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Appliance</span>
+<span class="text-xs font-bold">Air Conditioning</span>
+</div>
+</div>
+</div>
+<!-- Kitchen Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md">
+<div class="h-44 overflow-hidden">
+<img alt="Kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbqU-72Ey_1T2WMuXCEt6xkdvXIkoBiaL-jud4jQMqO6n7UVuzpn9XRmM4tL60CdsCtbexjg8h5RZYuQOv5NbZng8-5HxW_1wRwlkLMUTvtkG3Y3ZN_eTQjKHC0KDoPuezJ9ONtmrRkrGlZKbw1Ta7t4EJ02lSXKtuL64Krw6vaXj2_L6_zjtB0flWaBOdG0A14MzMTo-WlDYeOTP4CwcVjSm-KrpsCylJ5E6Zn9An4JEljv0mYxQP8dmpoH_iGMI9gx09XuPMlaI"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">restaurant</span>
+</div>
+<span class="font-bold text-lg">Kitchen</span>
+</div>
+<span class="text-lg font-bold">0.8 kW</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<span>Consumption Level</span>
+<span class="text-primary">Normal</span>
+</div>
+<div class="h-2.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Appliance</span>
+<span class="text-xs font-bold">Refrigerator</span>
+</div>
+</div>
+</div>
+<!-- Master Bedroom Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md">
+<div class="h-44 overflow-hidden">
+<img alt="Master Bedroom" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcowjRg29X_gS-oET2Y7_rgGDaqauHbE3UAEebyiYLaCXBN8BiR1EdxZB2Kg6RAPreVwX2MXDlGuBo8RiikGBCjJiTlOxT8jLagRb_Qh01I0lr-W8scyDAUwIxeLTrUqhmzJFggiU7jLv_PWFoJpyB-7YeN3KPMy5crgZSF5mbxhr4s0UxjbGLr8hHwaUQkPr2RGwQuCF4VfrW1m9DTLiMjm1oaa8NmgiO9Zn_KuR9XbxsuF7jaxYHqvr90V5qMnqs_SxiERU6UBY"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">bed</span>
+</div>
+<span class="font-bold text-lg">Master Bedroom</span>
+</div>
+<span class="text-lg font-bold">0.4 kW</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<span>Consumption Level</span>
+<span class="text-secondary">Low</span>
+</div>
+<div class="h-2.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Appliance</span>
+<span class="text-xs font-bold">Lighting</span>
+</div>
+</div>
+</div>
+<!-- Office Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md">
+<div class="h-44 overflow-hidden">
+<img alt="Office" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQnvx6o6B_9zIfMF9LilAW6QdQs6nXVy-vAWLiNAtG6Nd6a2pHmcJaGqq0Dm7iYf6sZZEQUe-aZrNg3FCy-Fmn1tDpAdoDbXTYDYSLo6E_4dU0l5DFMdnmIaLdGmXoZM_nYchYFKITv2SzRQnJyRkfboaLSkC7qKnJGexJoartZ1sMteMWhKcaEUMFjsxHmQnbX3TZU6GcNs8DQ8264PR6tIC-YYW1N54pmqLwLt3Zyrong_OJKw4xyNA6u103oo8cKZRGeKOTuUg"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">work</span>
+</div>
+<span class="font-bold text-lg">Office</span>
+</div>
+<span class="text-lg font-bold">0.6 kW</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<span>Consumption Level</span>
+<span class="text-primary">Normal</span>
+</div>
+<div class="h-2.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 35%;"></div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Appliance</span>
+<span class="text-xs font-bold">Desktop PC</span>
+</div>
+</div>
+</div>
+<!-- Garage Card -->
+<div class="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col group transition-all hover:shadow-md">
+<div class="h-44 overflow-hidden">
+<img alt="Garage" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5uvdTHjnAmFWa75NXlC8zYzPWHbvy3SweAsfulhvG7FO6G5DTlkTx0YAqdjAHvm6eDBR--F-B8Un2Gy9zJBVJ2nmK6y-6ulpZ8Rae2hTSB1QVXAvvC5D5VYkz5zpcazVFyfTDCNi1ofpWV_uix69qheb7MFgVK75kE1BBVoug_gwNOveZaAQ0IJrhOAOLkxVgBp-CJb9BwA5nJV7dVefXokiRS6kId2qdP0GK8Tg8gm6Q-5bl1_fdaMaI3-85BEbJ3-qanqywRO8"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">garage</span>
+</div>
+<span class="font-bold text-lg">Garage</span>
+</div>
+<span class="text-lg font-bold">3.5 kW</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400">
+<span>Consumption Level</span>
+<span class="text-red-500">High</span>
+</div>
+<div class="h-2.5 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+<div class="mt-auto p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Appliance</span>
+<span class="text-xs font-bold">EV Charger</span>
+</div>
+</div>
+</div>
+<!-- Add Room Card -->
+<div class="border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2rem] flex flex-col items-center justify-center p-8 text-slate-400 hover:border-primary hover:text-primary transition-all cursor-pointer group bg-white/40 dark:bg-slate-900/40">
+<div class="size-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">add</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest">Add New Room</span>
+</div>
+</div>
+</div>
+<!-- Footer Affirmation -->
+<footer class="flex items-center justify-center gap-4 text-slate-400 py-8 border-t border-slate-100 dark:border-slate-800 mt-12">
+<span class="material-symbols-outlined text-secondary active-icon">verified_user</span>
+<p class="text-sm italic font-medium">Home energy profile optimized for efficiency and cost savings.</p>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

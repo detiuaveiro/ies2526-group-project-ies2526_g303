@@ -12,6 +12,7 @@
 - Redação do report
 - Criação do ficheiro de apresentacão
 - Estabelecimento da arquitetura
+- Criacão dos diagramas para as User Stories
 
 ### Tarefas
 | Tarefa | Responsável | Estado |
@@ -21,3 +22,4 @@
 | Redação da ata de reunião 4| Diogo Ruivo | Concluído |
 | Criacão do ficheiro de apresentacão | Rodrigo Fonseca | Concluído |
 | Estabelecimento da arquitetura | Gabriel Riquito | Concluído |
+| Criacao dos diagramas para as User Stories | Rodrigo Fonseca | Concluído |
