@@ -111,7 +111,7 @@ Os protótipos foram criados para **representar as principais funcionalidades** 
 > **Nota:** Os protótipos em png e em HTML encontram-se em `prototypes`.
 > Alguns diagramas detalhados, user stories associadas e links para os protótipos estão documentados em **diagrama.md**, mostrando a ligação entre arquitetura, personas e casos de uso.
 
-* [**Protótipos**](../../prototypes/diagrama.md)
+* [**Protótipos**](../../prototypes/diagramas.md)
 
 ---
 
