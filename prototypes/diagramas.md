@@ -1,4 +1,10 @@
-### **1. Admin – Dashboard de estado técnico**
+# Diagramas de User Stories + Protótipos
+
+---
+
+## **US2 – Verificação de Conetividade (Admin – Dashboard de estado técnico)**
+
+Protótipo: ![Abrir protótipo](./us/us2.html)
 
 ```mermaid
 graph TD
@@ -13,7 +19,9 @@ graph TD
 
 ---
 
-### **2. Reformado – Consumo de energia por divisão**
+## **US9 – Monitorização de Consumo (Reformado – Consumo de energia por divisão)**
+
+Protótipo: ![Abrir protótipo](./us/us9.html)
 
 ```mermaid
 graph TD
@@ -27,7 +35,9 @@ graph TD
 
 ---
 
-### **3. Mãe – Alerta de movimento no quarto do bebé**
+## **US7 – Deteção de Intrusão/Movimento (Mãe – Alerta no quarto do bebé)**
+
+Protótipo: ![Abrir protótipo](./us/us7.html)
 
 ```mermaid
 graph TD
@@ -38,11 +48,13 @@ graph TD
     BackendM -->|Envia notificação| Mom
 ```
 
-**Explicação:** Quando o sensor detecta movimento, o backend cria um evento, armazena na base de dados e envia alerta imediato ao portal.
+**Explicação:** Quando o sensor deteta movimento, o backend cria um evento, armazena na base de dados e envia alerta imediato ao portal.
 
 ---
 
-### **4. Programador em teletrabalho – Controlar aquecimento e luzes**
+## **US5 – Atuação Remota (Programador – Controlo de luzes e aquecimento)**
+
+Protótipo: ![Abrir protótipo](./us/us5.html)
 
 ```mermaid
 graph TD
@@ -52,11 +64,11 @@ graph TD
     BackendD --> DBD["Base de Dados de Comandos"]
 ```
 
-**Explicação:** O programador envia comandos pelo dashboard; o backend processa e controla os atuadores físicos virtuais, registando a ação na base de dados.
+**Explicação:** O programador envia comandos pelo dashboard; o backend processa e controla os atuadores virtuais, registando a ação na base de dados.
 
 ---
 
-### **Esta é a nossa arquitetura**
+## Arquitetura Geral do Sistema
 
 ```mermaid
 graph TD
