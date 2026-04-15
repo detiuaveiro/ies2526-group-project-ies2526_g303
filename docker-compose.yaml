@@ -13,7 +13,11 @@ services:
       POSTGRES_DB: smarthome
 
   rabbitmq:
+<<<<<<< HEAD
     image: rabbitmq:3-management
+=======
+    image: rabbitmq:3
+>>>>>>> master
     container_name: smarthome-broker
     restart: always
     ports:
@@ -25,10 +29,15 @@ services:
     container_name: smarthome-backend
     restart: always
     depends_on:
+<<<<<<< HEAD
       db:
         condition: service_started
       rabbitmq:
         condition: service_started
+=======
+      - db
+      - rabbitmq
+>>>>>>> master
     ports:
       - "8080:8080"
     environment:

@@ -11,7 +11,11 @@ RUN mvn clean package -DskipTests
 
 
 # ---------- RUN STAGE ----------
+<<<<<<< HEAD
 FROM eclipse-temurin:17-jdk
+=======
+FROM openjdk:17-jdk-slim
+>>>>>>> master
 
 WORKDIR /app
 
