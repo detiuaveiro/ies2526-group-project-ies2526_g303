@@ -246,8 +246,51 @@ graph TD
     BL --> MQ
     MQ --> A
 ```
+## B.4. Middleware e Integração de Dados
 
----
+### Escolha do Message Broker
+O sistema utiliza o **RabbitMQ** como núcleo de integração assíncrona. Esta escolha baseia-se na necessidade de suporte robusto a protocolos AMQP e MQTT, garantindo o desacoplamento entre os simuladores e o backend.
+
+### Lógica de Fluxo
+1. **Ingestão:** Os simuladores publicam telemetria em tópicos específicos (ex: `telemetry.<divisao>.<tipo>`).
+2. **Processamento:** O Backend consome as filas do RabbitMQ através de listeners automáticos, validando os esquemas JSON e processando as regras de negócio.
+3. **Persistência:** Os dados validados são armazenados na base de dados SQL para permitir a consulta histórica e geração de relatórios.
+
+## B.5. Especificação da API REST
+
+### Tabela de Endpoints
+
+| Entidade | Método | Endpoint | Descrição |
+| :--- | :--- | :--- | :--- |
+| **Users** | `GET` | `/api/users` | Lista todos os utilizadores (Acesso: Admin). |
+| **Users** | `POST` | `/api/users` | Registo de novos utilizadores. |
+| **Sensors** | `GET` | `/api/sensors` | Lista sensores e respetivo estado de conectividade. |
+| **Sensors** | `POST` | `/api/sensors` | Configuração de novos sensores virtuais. |
+| **Data** | `GET` | `/api/data` | Consulta de telemetria histórica com filtros de tempo. |
+| **Actuators**| `POST` | `/api/actuators/cmd`| Envio de comandos de controlo para dispositivos. |
+| **Alerts** | `GET` | `/api/alerts` | Consulta de alertas de segurança e consumo. |
+| **Alerts** | `PUT` | `/api/alerts/{id}` | Atualização de estado de alertas (resolvido/lido). |
+
+### Definição de Payloads (JSON)
+
+**Sensor (Resposta GET):**
+```json
+{
+  "id": "uuid-001",
+  "tipo": "temperatura",
+  "divisao": "quarto",
+  "unidade": "Celsius",
+  "status": "online"
+}
+```
+
+| Código HTTP | Descrição |
+| :--- | :--- |
+| `200 OK` | Sucesso na operação. |
+| `201 Created` | Recurso criado com sucesso. |
+| `400 Bad Request` | Payload inválido ou erro de validação. |
+| `401 Unauthorized` | Falha na autenticação JWT. |
+| `404 Not Found` | Recurso não localizado. |
 
 ## C. Modelo de Informação
 
