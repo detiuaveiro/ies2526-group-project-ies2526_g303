@@ -1,6 +1,8 @@
-package pt.ua.deti.ies.g303.backend.repositories;
-
+package smarthome.backend.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pt.ua.deti.ies.g303.backend.models.SensorData;
+import smarthome.backend.models.*;
+import java.util.List;
 
-public interface SensorDataRepository extends JpaRepository<SensorData, Long> { }   
+public interface SensorDataRepository extends JpaRepository<SensorData, Long> {
+    List<SensorData> findBySensorId(String sensorId);
+ }   

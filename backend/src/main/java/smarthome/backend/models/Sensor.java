@@ -1,5 +1,4 @@
-package pt.ua.deti.ies.g303.backend.models;
-
+package smarthome.backend.models;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,5 +14,45 @@ public class Sensor {
     private List<SensorData> leituras;
 
     public Sensor() {}
-    // Getters e Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDivisao() {
+        return divisao;
+    }
+
+    public void setDivisao(String divisao) {
+        this.divisao = divisao;
+    }
+
+    public String getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
+    }
+
+    public List<SensorData> getLeituras() {
+        return leituras;
+    }
+
+    public void setLeituras(List<SensorData> leituras) {
+        this.leituras = leituras;
+    }
+    
 }

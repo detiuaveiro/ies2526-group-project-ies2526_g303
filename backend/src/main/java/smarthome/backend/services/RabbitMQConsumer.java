@@ -1,11 +1,10 @@
-package pt.ua.deti.ies.g303.backend.services;
-
+package smarthome.backend.services;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ua.deti.ies.g303.backend.config.RabbitMQConfig;
-import pt.ua.deti.ies.g303.backend.models.SensorData;
-import pt.ua.deti.ies.g303.backend.repositories.SensorDataRepository;
+import smarthome.backend.config.RabbitMQConfig;
+import smarthome.backend.models.SensorData;
+import smarthome.backend.repositories.SensorDataRepository;
 import java.time.LocalDateTime;
 
 @Service
