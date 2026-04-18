@@ -8,16 +8,13 @@ public class SensorData {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String sensorId;
+
+    @ManyToOne
+    @JoinColumn(name = "sensor_id", nullable = false)
+    private Sensor sensor; // Ligação direta ao metadado
+
     private Double valor;
     private LocalDateTime timestamp;
-
-    public SensorData() {}
-
-    public String getSensorId() { return sensorId; }
-    public void setSensorId(String sensorId) { this.sensorId = sensorId; }
-    public Double getValor() { return valor; }
-    public void setValor(Double valor) { this.valor = valor; }
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    
+    // Getters e Setters
 }
