@@ -1,0 +1,6 @@
+name: SmartHome-Local-Docker
+values:
+  - key: base_url
+    enabled: true
+    value: ''
+color: 180

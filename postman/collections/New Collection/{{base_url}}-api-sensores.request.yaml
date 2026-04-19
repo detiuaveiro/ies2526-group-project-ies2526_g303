@@ -1,0 +1,5 @@
+$kind: http-request
+name: "{{base_url}}/api/sensores"
+url: "{{base_url}}/api/sensores"
+method: GET
+order: 1776615194771
