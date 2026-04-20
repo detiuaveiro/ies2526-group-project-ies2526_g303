@@ -6,7 +6,6 @@ import smarthome.backend.models.Sensor;
 import smarthome.backend.models.SensorData;
 import smarthome.backend.repositories.SensorRepository;
 import smarthome.backend.repositories.SensorDataRepository;
-
 import java.util.List;
 
 @RestController // Diz ao Spring que isto é uma API REST (vai devolver JSON)
