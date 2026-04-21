@@ -2,6 +2,7 @@ package smarthome.backend.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class SensorData {
@@ -9,9 +10,9 @@ public class SensorData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "sensor_id", nullable = false)
-    private Sensor sensor; // Ligação direta ao metadado
+    private Sensor sensor;
 
     private Double valor;
     private LocalDateTime timestamp;

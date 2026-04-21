@@ -2,6 +2,7 @@ package smarthome.backend.models;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Sensor {
@@ -11,7 +12,8 @@ public class Sensor {
     private String divisao; // Ex: "quarto_bebe"
     private String unidade; // Ex: "binary", "Celsius", "%"
 
-    @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "sensor")
     private List<SensorData> leituras;
 
     public Sensor() {}
