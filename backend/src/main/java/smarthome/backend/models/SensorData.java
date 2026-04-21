@@ -2,7 +2,7 @@ package smarthome.backend.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class SensorData {
@@ -10,12 +10,15 @@ public class SensorData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
     @ManyToOne
+    @JsonIgnoreProperties("leituras")
     private Sensor sensor;
 
     private Double valor;
     private LocalDateTime timestamp;
+
+    public SensorData(){}
+    
     public Long getId() {
         return id;
     }
