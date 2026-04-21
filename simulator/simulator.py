@@ -22,9 +22,9 @@ while True:
             pika.ConnectionParameters(host=host, port=5672)
         )
         break
-    except Exception as e:
-        print("A esperar RabbitMQ...", e)
-        time.sleep(3)
+    except Exception:
+        print("A aguardar que o RabbitMQ fique disponível...")
+        time.sleep(5)
 
 channel = connection.channel()
 
