@@ -36,18 +36,14 @@ channel.queue_declare(queue='telemetry_queue', durable=True)
 
 
 def gerar_valor(sensor_id):
-    if "temperatura" in sensor_id:
+    if "temp" in sensor_id: # CORRIGIDO: Procura "temp"
         return round(random.uniform(15, 30), 2)
-
     elif "humidade" in sensor_id:
         return round(random.uniform(30, 80), 2)
-
     elif "luz" in sensor_id or "movimento" in sensor_id:
         return float(random.randint(0, 1))
-
     elif "energia" in sensor_id:
         return round(random.uniform(0, 5), 2)
-
     return 0.0
 
 

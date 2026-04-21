@@ -1,10 +1,10 @@
-# 🏠 SmartHome Backend
+#  SmartHome Backend
 
 Backend do sistema SmartHome desenvolvido em **Spring Boot**, com integração a **PostgreSQL (Docker)** e **RabbitMQ**, e testes configurados com **H2 in-memory database**.
 
 ---
 
-## 🚀 Como correr o projeto
+##  Como correr o projeto
 
 ### 1. Subir todo o sistema (recomendado)
 
@@ -16,9 +16,9 @@ docker compose up --build
 
 Isto irá iniciar automaticamente:
 
-* 🐘 PostgreSQL (base de dados)
-* 🐇 RabbitMQ (message broker)
-* 🧠 Backend Spring Boot
+*  PostgreSQL (base de dados)
+*  RabbitMQ (message broker)
+*  Backend Spring Boot
 
 ---
 
@@ -32,7 +32,7 @@ Após o arranque:
 
 ---
 
-## 🧪 Build e testes com Maven
+##  Build e testes com Maven
 
 Para compilar e testar localmente:
 
@@ -47,7 +47,7 @@ Este comando:
 * Executa testes unitários e de integração
 * Gera o `.jar` final
 
-📦 Output:
+ Output:
 
 ```
 backend/target/backend-0.0.1-SNAPSHOT.jar
@@ -55,7 +55,7 @@ backend/target/backend-0.0.1-SNAPSHOT.jar
 
 ---
 
-## 🧪 Base de dados de testes (H2)
+##  Base de dados de testes (H2)
 
 Os testes usam uma base de dados **H2 em memória**, o que permite:
 
@@ -71,7 +71,7 @@ src/test/resources/application.properties
 
 ---
 
-## 🐳 Arquitetura do sistema
+##  Arquitetura do sistema
 
 | Componente               | Tecnologia          |
 | ------------------------ | ------------------- |
@@ -84,7 +84,7 @@ src/test/resources/application.properties
 
 ---
 
-## 📦 Docker
+##  Docker
 
 O backend é automaticamente containerizado.
 
@@ -107,7 +107,7 @@ CMD ["java", "-jar", "app.jar"]
 
 ---
 
-## 🧠 Notas importantes
+##  Notas importantes
 
 * O backend liga automaticamente à base de dados PostgreSQL no Docker
 * Os testes usam H2 e não dependem do Docker
@@ -118,7 +118,7 @@ CMD ["java", "-jar", "app.jar"]
 
 ---
 
-## ✅ Estado atual do projeto
+##  Estado atual do projeto
 
 ✔ Backend Spring Boot funcional
 ✔ PostgreSQL em Docker operacional
@@ -128,7 +128,7 @@ CMD ["java", "-jar", "app.jar"]
 
 ---
 
-## 📌 Resumo
+##  Resumo
 
 * Usa `docker compose up` para correr tudo
 * Usa `mvn clean package` para build/testes
