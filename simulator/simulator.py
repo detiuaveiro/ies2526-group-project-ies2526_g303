@@ -6,12 +6,15 @@ import os
 from datetime import datetime
 
 SENSORS = [
-    "temperatura_001",
-    "humidade_001",
-    "luz_001",
-    "movimento_001",
-    "energia_001"
+    "temp-sala-01",
+    "energia-cozinha-01",
+    "temp-quarto-bebe"
 ]
+#    "temperatura_001",
+#    "humidade_001",
+#    "luz_001",
+#    "movimento_001",
+#    "energia_001"
 
 host = os.getenv("RABBITMQ_HOST", "rabbitmq")
 
