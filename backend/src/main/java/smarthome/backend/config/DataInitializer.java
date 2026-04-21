@@ -18,23 +18,16 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        if (sensorRepository.count() > 0) return;
 
-        if (sensorRepository.count() > 0) {
-            System.out.println("Sensores já existem. Seed ignorado.");
-            return;
-        }
-
-        List<Sensor> sensores = List.of(
-            create("temperatura_001", "temperatura", "sala", "Celsius"),
-            create("humidade_001", "humidade", "sala", "%"),
-            create("luz_001", "luz", "corredor", "binary"),
-            create("movimento_001", "movimento", "corredor", "binary"),
-            create("energia_001", "energia", "casa", "kWh")
+        List<Sensor> sensores = List.of( 
+            create("temp-sala-01", "temperatura", "sala", "Celsius"), 
+            create("energia-cozinha-01", "energia", "cozinha", "kWh"),
+            create("temp-quarto-bebe", "temperatura", "quarto_bebe", "Celsius")
         );
-
         sensorRepository.saveAll(sensores);
 
-        System.out.println("Seed de sensores concluído!");
+        System.out.println("DEBUG: Seed de sensores (temp-sala-01, etc.) concluído com sucesso!");
     }
 
     private Sensor create(String id, String tipo, String divisao, String unidade) {
