@@ -22,6 +22,8 @@ public class RabbitMQConsumer {
     @RabbitListener(queues = RabbitMQConfig.TELEMETRY_QUEUE)
     public void receive(SensorData data) {
 
+        System.out.println("DEBUG: Recebi leitura do sensor: " + data.getSensor().getId() + " | Valor: " + data.getValor());
+
         String sensorId = data.getSensor().getId();
 
         Sensor sensor = sensorRepository.findById(sensorId)
