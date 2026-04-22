@@ -327,3 +327,64 @@ O sistema utiliza o **RabbitMQ** como núcleo de integração assíncrona. Esta 
 * `descricao`
 * `resolvido` (boolean)
 * `timestamp`
+
+
+
+# Relatório de Incremento: Iteração 3 - SmartHome API & End-to-End
+
+## 1. Resumo do Incremento
+Nesta terceira iteração, o foco principal foi a estabilização da infraestrutura de comunicação e a implementação da interface programática (API REST) do sistema. O sistema evoluiu de um protótipo de comunicação para uma plataforma funcional capaz de persistir telemetria em tempo real, gerir utilizadores e monitorizar eventos críticos através de alertas.
+
+## 2. Arquitetura do Sistema (End-to-End)
+A arquitetura consolidada segue um fluxo de dados desacoplado e resiliente:
+
+1.  **Simulador (Python)**: Gera dados sintéticos de sensores (Temperatura, Energia, etc.) e publica-os no *broker* de mensagens.
+2.  **RabbitMQ (Message Broker)**: Atua como intermediário, garantindo que as mensagens não se perdem mesmo que o backend esteja temporariamente indisponível.
+3.  **Backend (Java Spring Boot)**: Consome as mensagens da fila `telemetry_queue`, processa a lógica de negócio (incluindo a geração automática de alertas) e persiste a informação.
+4.  **Base de Dados (PostgreSQL)**: Armazena o inventário de sensores, o histórico de leituras, perfis de utilizadores e registos de alertas.
+5.  **API Gateway (Swagger/OpenAPI)**: Expõe os recursos do sistema para serem consumidos pelo Frontend ou ferramentas de teste como o Postman.
+
+
+
+## 3. Documentação da API REST
+A API foi organizada em três controladores principais, oferecendo operações CRUD (Create, Read, Update, Delete) completas:
+
+### 3.1. Gestão de Sensores (`/api/sensores`)
+* **GET `/api/sensores`**: Lista todos os sensores registados (US2).
+* **POST `/api/sensores`**: Regista um novo sensor no inventário.
+* **GET `/api/sensores/{id}/leituras`**: Devolve o histórico de telemetria de um sensor específico (US6, US9).
+* **DELETE `/api/sensores/{id}`**: Remove um sensor e os seus dados associados (Cascade Delete).
+
+### 3.2. Gestão de Utilizadores (`/api/users`)
+* **GET `/api/users`**: Lista os perfis de utilizadores da casa.
+* **POST `/api/users`**: Cria um novo utilizador (Admin/User) (US1).
+* **PUT `/api/users/{id}`**: Atualiza dados de perfil ou preferências.
+
+### 3.3. Sistema de Alertas (`/api/alerts`)
+* **GET `/api/alerts`**: Consulta todas as notificações geradas pelo sistema.
+* **PUT `/api/alerts/{id}/read`**: Marca um alerta como visualizado pelo utilizador.
+* **Lógica Automática**: O sistema gera alertas automaticamente sempre que um sensor de temperatura reporta valores acima de 28ºC ou quando são detetados eventos críticos de segurança.
+
+## 4. Demonstração de Resultados e Validação
+A validação do sistema foi realizada através da plataforma Postman, confirmando o sucesso do fluxo de dados:
+
+* **Persistência Real**: Foi verificado através de comandos SQL (`SELECT * FROM sensor_data`) que as leituras enviadas pelo simulador Python estão a ser corretamente indexadas com *timestamps* do servidor.
+* **Consistência de Dados**: Implementação de lógica de limpeza (*trimming*) de identificadores para garantir que sensores criados via API coincidem com as mensagens do simulador.
+* **Resposta da API**: O endpoint de leituras devolve um array JSON formatado, pronto para ser consumido por gráficos de monitorização no Frontend.
+
+## 5. Deployment e Containerização
+Todo o ecossistema está orquestrado em contentores Docker, garantindo a portabilidade do incremento. O ficheiro `docker-compose.yaml` gere:
+* **Rede Isolada**: Comunicação interna segura entre os serviços.
+* **Volumes**: Persistência de dados do PostgreSQL entre reinícios.
+* **Auto-Build**: Compilação automática do código Java e Python no arranque.
+
+## 6. Desafios Técnicos Superados
+Durante esta iteração, a equipa resolveu problemas críticos de:
+1.  **Recursão Infinita**: Ajuste nas anotações Jackson para permitir a serialização de relações bidirecionais entre Sensores e Dados.
+2.  **Sincronização de IDs**: Correção de discrepâncias de nomenclatura entre o gerador de dados (Python) e o inicializador de base de dados (Java).
+3.  **Configuração de Filas**: Garantia de que as mensagens no RabbitMQ são consumidas de forma idempotente.
+
+---
+
+**David Calix**
+Product Owner, Grupo 303
