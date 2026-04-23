@@ -1,5 +1,5 @@
 # Ata de Reunião - 1
-**00/03/2026 | Maker Lab**
+**24/03/2026 | Maker Lab**
 
 ### Participantes
 * [Diogo Ruivo] - Team Manager

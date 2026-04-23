@@ -1,5 +1,5 @@
 # Ata de Reunião - 3 (Ponto de Situação e Integração)
-**20/04/2026 | Maker Lab**
+**21/04/2026 | Maker Lab**
 
 ### Participantes
 * [Diogo Ruivo] - Team Manager
