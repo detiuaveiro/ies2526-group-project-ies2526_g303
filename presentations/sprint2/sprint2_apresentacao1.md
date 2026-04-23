@@ -1,144 +1,21 @@
-# Smart Home Dashboard – Sprint 2
+# Demonstração Técnica - Iteração 3: Arquitetura End-to-End e API REST
 
----
+### 1. Orquestração e Infraestrutura (Docker)
+**Ação:** Apresentar o terminal com os contentores em execução ou a interface do Docker Desktop.
+**Discurso:** > "O objetivo principal desta iteração foi a consolidação da nossa infraestrutura end-to-end. Garantimos que a totalidade do sistema está containerizada, recorrendo ao Docker e ao `docker-compose`. Isto assegura a portabilidade da nossa aplicação para o ambiente de servidor exigido. Neste momento, temos os serviços do PostgreSQL, RabbitMQ, o backend em Spring Boot e o simulador de dados a correrem em simultâneo e em rede fechada."
 
-## 1. Introdução ao Projeto
+### 2. Ingestão Assíncrona de Dados (Message Broker)
+**Ação:** Mostrar os logs do simulador Python ou o painel de gestão do RabbitMQ (`localhost:15672`) a receber tráfego.
+**Discurso:** > "Para a ingestão de dados, implementámos um pipeline assíncrono. O nosso simulador Python atua como *Publisher*, gerando telemetria em tempo real (temperatura e energia) e publicando esses dados no **RabbitMQ**. A adoção deste *message broker* foi uma decisão de arquitetura para garantir o desacoplamento dos serviços e permitir a escalabilidade do sistema caso o volume de sensores aumente no futuro."
 
-O **Smart Home Dashboard** é uma plataforma web centrada no utilizador que permite gerir uma casa inteligente de forma simples, confortável e segura.
+### 3. Lógica de Negócio e Persistência (Spring Boot & PostgreSQL)
+**Ação:** Mostrar os logs do Spring Boot no terminal a fazer o consumo das mensagens e os respetivos `inserts` via Hibernate.
+**Discurso:** > "No lado do backend, desenvolvemos a aplicação em Spring Boot, que atua simultaneamente como *Consumer* da fila do RabbitMQ e provedor da API REST. Assim que as mensagens chegam ao broker, o nosso serviço consome o JSON, realiza a validação dos dados contra a entidade 'Sensor' existente e, através do Hibernate/JPA, garante a persistência segura e relacional destes registos na nossa base de dados PostgreSQL."
 
-O sistema permite:
+### 4. Validação do Contrato da API e Demonstração
+**Ação:** Abrir primeiro o Swagger UI (`localhost:8080/swagger-ui/index.html`) e, de seguida, realizar o teste prático no Postman.
+**Discurso:** > "Para a definição clara dos contratos da nossa API REST e facilitação da futura integração com o Frontend em React, implementámos o **Swagger/OpenAPI**, que documenta automaticamente todos os nossos *endpoints* CRUD. 
+> 
+> Para demonstrar o pipeline completo de forma prática, vamos executar um pedido `GET` através do Postman ao nosso *endpoint* de telemetria. Como é possível observar na resposta JSON, o backend está a expor corretamente os dados que estão a ser injetados pelo simulador e guardados na base de dados em tempo real."
 
-* Monitorizar condições da habitação em tempo real;
-* Controlar dispositivos remotamente (aquecimento e iluminação);
-* Definir automações inteligentes;
-* Receber alertas em situações críticas;
-* Consultar histórico e analisar consumo energético.
-
-O sistema é composto por quatro componentes principais:
-**Simulador de sensores**, **Backend com API REST**, **Base de Dados** e **Dashboard Web**.
-
----
-
-## 2. Sprint 2 – Trabalho Realizado
-
-Durante esta sprint, focámo-nos na definição funcional e estrutural do sistema.
-
-### Principais Conquistas
-
-* Protótipos completos e funcionais (Stitch/Figma);
-* Arquitetura distribuída definida e validada;
-* Criação de diagramas de User Stories;
-* Atualização do **report.md** com arquitetura e decisões.
-
-### Reuniões
-
-| Reunião | Foco                     | Resultado principal                                                                 |
-|--------|--------------------------|------------------------------------------------------------------------------------|
-| 1      | Arquitetura e requisitos | Introdução de atuadores e definição do modelo do sistema                           |
-| 2      | Protótipos              | Planeamento dos protótipos e escolha da abordagem visual                          |
-| 3      | Consolidação            | Protótipos finalizados, arquitetura estabilizada e report concluído               |
-
----
-
-## 3. Arquitetura do Sistema
-
-A arquitetura do sistema segue uma abordagem distribuída e desacoplada:
-
-* **Simulação:** Sensores e atuadores virtuais (Python)
-* **IoT Layer:** Comunicação através de Message Broker
-* **Backend:** API REST + lógica de negócio (Springboot)
-* **Base de Dados:** Persistência de dados (SQL)
-* **Frontend:** Dashboard web (TypeScript)
-
-### Diagrama da Arquitetura
-
-```mermaid
-graph TD
-    subgraph "Camada de Simulação"
-        SIM["Simuladores (Python)"]
-    end
-
-    subgraph "Camada IoT"
-        S[Sensores]
-        A[Atuadores]
-    end
-
-    MQ[Message Broker]
-
-    subgraph "Backend"
-        BL["Lógica de Negócio (Java)"]
-        API["API REST (Springboot)"]
-    end
-
-    DB[("Base de Dados (SQL)")]
-
-    subgraph "Frontend"
-        WA["Web Dashboard (TypeScript)"]
-    end
-
-    SIM <--> S
-    SIM <--> A
-    S --> MQ
-    MQ --> BL
-    BL <--> DB
-    WA <--> API
-    API <--> BL
-    BL --> MQ
-    MQ --> A
-```
-
----
-
-## 4. Protótipos e Personas
-
-Os protótipos foram desenvolvidos com base nas necessidades das diferentes **personas do sistema**:
-
-| Persona     | Objetivo principal          |
-| ----------- | --------------------------- |
-| Programador | Conforto e produtividade    |
-| Mãe         | Segurança e monitorização   |
-| Reformado   | Eficiência energética       |
-| Admin       | Saúde e controlo do sistema |
-
-### Funcionalidades principais
-
-* Monitorização técnica do sistema (Admin)
-* Controlo remoto de dispositivos
-* Visualização de consumo energético
-* Sistema de alertas e eventos
-
----
-
-## 5. Ligação entre Protótipos e Arquitetura
-
-Para demonstrar como os protótipos se ligam à arquitetura e às user stories, criámos um documento dedicado com:
-
-* User Stories organizadas por persona
-* Diagramas de interação (Frontend ↔ Backend ↔ Sensores)
-* Protótipos associados a cada caso de uso
-
-**Abrir diagramas e protótipos detalhados:**
-
-[Ver Diagramas de User Stories](../../prototypes/diagramas.md)
-
----
-
-## 6. Próximo Sprint – Sprint 3 (I3)
-
-Objetivo: **Implementação da API e validação end-to-end**
-
-* Definir e implementar endpoints REST (CRUD);
-* Testar comunicação completa usando Postman;
-* Deploy em containers (Docker);
-* Documentação da API (Swagger/OpenAPI).
-
----
-
-## 7. Equipa
-
-| Nome            | Função        |
-| --------------- | ------------- |
-| Diogo Ruivo     | Team Manager  |
-| David Cálix     | Product Owner |
-| Gabriel Riquito | Architect     |
-| Rodrigo Fonseca | DevOps Master |
+***
