@@ -1,3 +1,8 @@
+package smarthome.backend.models;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
 public class Alert {
     @Id
