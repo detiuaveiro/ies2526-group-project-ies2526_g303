@@ -1,65 +1,107 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import TemperatureChart from './components/TemperatureChart';
 
-// 1. Define a interface para os teus dados (tem de bater com o teu Model Java)
+// Interface ajustada para o teu JSON real
 interface Sensor {
-  sensorId: string;
+  id: string;      // No teu JSON é "id"
   tipo: string;
-  localizacao: string;
+  divisao: string; // No teu JSON é "divisao", não "localizacao"[cite: 4]
   unidade: string;
 }
 
-interface SensorData {
-  id: number;
-  valor: number;
-  timestamp: string;
-}
-
-function App() {
+const App: React.FC = () => {
   const [sensores, setSensores] = useState<Sensor[]>([]);
   const [erro, setErro] = useState<string | null>(null);
+  const [sensorSelecionado, setSensorSelecionado] = useState<string | null>(null);
 
-  // 2. Função para ir buscar os dados à tua API
   const fetchSensores = async () => {
     try {
-      // O URL tem de ser o que definiste no @RequestMapping do teu Controller
       const response = await axios.get<Sensor[]>('http://localhost:8080/api/sensores');
       setSensores(response.data);
     } catch (err) {
-      setErro("Não consegui ligar ao backend. O Docker e o Spring Boot estão ligados?");
+      setErro("Erro de ligação: O Docker e o Backend estão ativos?");
       console.error(err);
     }
   };
 
-  // 3. Executa a função mal o site abre
   useEffect(() => {
     fetchSensores();
   }, []);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', color: '#333' }}>
       <h1>SmartHome Dashboard - Diogo</h1>
       
-      {erro && <p style={{ color: 'red' }}>{erro}</p>}
+      {erro && <p style={{ color: 'red', fontWeight: 'bold' }}>{erro}</p>}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+      <h2 style={{ borderBottom: '2px solid #eee', paddingBottom: '10px' }}>Os Teus Sensores</h2>
+      
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '15px', marginBottom: '40px' }}>
         {sensores.length === 0 && !erro ? (
-          <p>Nenhum sensor encontrado na base de dados...</p>
+          <p>A carregar sensores...</p>
         ) : (
-          sensores.map(sensor => (
-            <div key={sensor.sensorId} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px' }}>
-              <h3>{sensor.localizacao}</h3>
+          sensores.map((sensor) => (
+            <div 
+              key={sensor.id} 
+              style={{ 
+                border: sensorSelecionado === sensor.id ? '2px solid #ff7300' : '1px solid #ddd', 
+                padding: '15px', 
+                borderRadius: '8px',
+                cursor: 'pointer',
+                backgroundColor: sensorSelecionado === sensor.id ? '#fff3e0' : '#fff'
+              }}
+              onClick={() => setSensorSelecionado(sensor.id)}
+            >
+              {/* Usa 'divisao' para mostrar "sala", "cozinha", etc.[cite: 4] */}
+              <h3 style={{ marginTop: 0, textTransform: 'capitalize' }}>{sensor.divisao}</h3>
               <p><strong>Tipo:</strong> {sensor.tipo}</p>
-              <p><strong>ID:</strong> {sensor.sensorId}</p>
-              <button onClick={() => alert(`A buscar detalhes para ${sensor.sensorId}...`)}>
+              <p><strong>ID:</strong> {sensor.id}</p>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  setSensorSelecionado(sensor.id);
+                }}
+                style={{
+                  padding: '8px 12px',
+                  backgroundColor: '#ff7300',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+              >
                 Ver Histórico
               </button>
             </div>
           ))
         )}
       </div>
-    </div>
-  )
-}
 
-export default App
+      <h2 style={{ borderBottom: '2px solid #eee', paddingBottom: '10px' }}>
+        Análise em Tempo Real {sensorSelecionado ? `- Sensor ${sensorSelecionado}` : ''}
+      </h2>
+      
+      <div style={{ 
+        maxWidth: '900px', 
+        backgroundColor: '#fff', 
+        borderRadius: '8px', 
+        padding: '20px', 
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        minHeight: '350px'
+      }}>
+        {sensorSelecionado ? (
+          /* FIX: Passar a variável entre chavetas, sem aspas */
+          <TemperatureChart sensorId={sensorSelecionado} />
+        ) : (
+          <div style={{ textAlign: 'center', paddingTop: '100px', color: '#999' }}>
+            <p>Selecione um sensor acima para carregar o histórico de telemetria.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default App;
